@@ -1,0 +1,39 @@
+@import "mixin";
+@import "variables";
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+}
+
+html {
+  font-size: 62.5%;
+
+  @include respond(tab-land) {
+    font-size: 56.25%;
+    overflow-x: hidden;
+  }
+  @include respond(tab-port) {
+    font-size: 54%
+  }
+  @include respond(tab-port-s) {
+    font-size: 50%
+  }
+  @include respond(tabs) {
+    font-size: 46%
+  }
+  @include respond(phone) {
+    font-size: 43%
+  }
+  @include respond(big-screen) {
+    font-size: 75%
+  }
+}
+
+.container {
+  max-width: $container-with;
+  margin: 0 auto;
+}
+
