@@ -1,0 +1,107 @@
+@import "mixin";
+@import "variables";
+
+.auth-form {
+  padding: 12rem 0;
+
+  .auth-title {
+    @include head-lora-36;
+    color: $blue-text-color;
+    margin-bottom: 4rem;
+  }
+
+  .auth-inputs {
+    margin-bottom: 4rem;
+
+    .auth-input {
+      margin-top: .5rem;
+
+      input {
+        width: 42.2rem;
+      }
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+    }
+
+    .auth-checkbox {
+      display: flex;
+      align-items: flex-start;
+      width: 42.2rem;
+      margin-top: 1rem;
+
+
+      input {
+        appearance: none;
+        -webkit-appearance: none;
+        border: .1rem solid #071739;
+        border-radius: 3px;
+        width: 1.4rem;
+        height:  1.4rem;
+        padding: 0;
+        margin: .2rem 0 0 0;
+
+        cursor: pointer;
+        position: relative;
+        outline: none;
+
+        &.signup-checkbox {
+          width: 2.7rem;
+          margin: .5rem 0 0 0;
+
+        }
+      }
+
+      input:checked {
+        background-color: white;
+        border: .1rem solid #071739;
+      }
+
+      input:checked::after {
+        content: "✓";
+        position: absolute;
+        color: $darkBlue-text-color;
+        padding: 0;
+        font-size: 1.6rem;
+        font-weight: 700;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      label {
+        font-size: 1.4rem;
+        line-height: 130%;
+        color: $darkBlue-text-color;
+        margin-left: 1rem;
+
+        a {
+          text-decoration: underline;
+          color: $blue-text-color;
+        }
+      }
+    }
+  }
+
+  .auth-button {
+    margin-bottom: 1rem;
+
+    button.button {
+      width: 42.2rem;
+      height: 5.1rem;
+    }
+  }
+
+  .auth-link {
+    font-size: 1.4rem;
+
+    a {
+      cursor: pointer;
+      color: $blue-text-color;
+      text-decoration: none;
+      margin-left: .7rem;
+    }
+  }
+}

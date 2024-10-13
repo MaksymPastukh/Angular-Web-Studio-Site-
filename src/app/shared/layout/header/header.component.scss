@@ -53,13 +53,18 @@ header.header {
       display: flex;
       align-items: center;
 
-      a span {
-        font-size: $text-size;
-        color: $darkBlue-text-color;
+      a {
         text-decoration: none;
-        margin-left: .7rem;
-        cursor: pointer;
+
+        span {
+          font-size: $text-size;
+          color: $darkBlue-text-color;
+          margin-left: .7rem;
+          cursor: pointer;
+        }
       }
+
+
     }
   }
 }

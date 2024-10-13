@@ -7,8 +7,8 @@ import { LayoutComponent } from './shared/layout/layout.component';
 import { HeaderComponent } from './shared/layout/header/header.component';
 import { FooterComponent } from './shared/layout/footer/footer.component';
 import { MainComponent } from './views/main/main.component';
-import { LoginComponent } from './views/login/login.component';
-import { SignupComponent } from './views/signup/signup.component';
+import {CarouselModule} from "ngx-owl-carousel-o";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -17,12 +17,12 @@ import { SignupComponent } from './views/signup/signup.component';
     HeaderComponent,
     FooterComponent,
     MainComponent,
-    LoginComponent,
-    SignupComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    CarouselModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

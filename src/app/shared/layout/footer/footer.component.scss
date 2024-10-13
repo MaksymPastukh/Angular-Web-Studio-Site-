@@ -61,18 +61,15 @@ footer.footer {
           display: flex;
           align-items: center;
 
-          svg {
+          a {
+            font-size: $text-size;
+            color: $darkBlue-text-color;
+            text-decoration: none;
             margin-right: 1.2rem;
 
             &:last-child {
               margin-right: 0;
             }
-          }
-
-          a {
-            font-size: $text-size;
-            color: $darkBlue-text-color;
-            text-decoration: none;
           }
         }
 

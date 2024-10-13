@@ -1,1 +1,21 @@
-<p>main works!</p>
+<section class="main">
+  <div class="container">
+    <owl-carousel-o [options]="customOptions">
+      <ng-template carouselSlide *ngFor="let slide of mainSlider">
+        <div class="slide">
+          <div class="slide-left">
+            <div class="slide-left-title">{{ slide.title }}</div>
+            <div class="slide-left-text" [innerHTML]="slide.text"></div>
+            <div class="slide-left-description">{{ slide.description }}</div>
+            <div class="slide-left-button">
+              <button class="button">Подробнее</button>
+            </div>
+          </div>
+          <div class="slide-right">
+            <img style="background-image: url('/assets/images/slider/{{slide.image}}')" alt="slide-img">
+          </div>
+        </div>
+      </ng-template>
+    </owl-carousel-o>
+  </div>
+</section>
