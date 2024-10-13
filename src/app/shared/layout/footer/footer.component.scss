@@ -1,0 +1,94 @@
+@import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/mixin";
+
+footer.footer {
+  padding: 4rem 0 5.4rem 0;
+  background-color: #b9d5fd;
+
+  .container {
+
+    .footer-top {
+      display: flex;
+      align-items: center;
+      margin-bottom: 4rem;
+
+      .footer-top-menu {
+        margin-left: 4rem;
+
+        nav ul {
+          margin: 0;
+          padding: 0;
+          display: flex;
+
+          li {
+            margin-left: 2rem;
+            list-style: none;
+            cursor: pointer;
+
+            &:first-child {
+              margin-left: 0;
+            }
+
+            a {
+              text-decoration: none;
+              font-size: $text-size;
+              color: $darkBlue-text-color
+            }
+          }
+        }
+      }
+    }
+
+    .footer-middle {
+      display: flex;
+
+      .footer-middle-block {
+        margin-right: 6rem;
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        .footer-middle-title {
+          font-size: $text-size;
+          color: $blue-text-color;
+          margin-bottom: 1rem;
+        }
+
+        .footer-middle-text {
+          font-size: $text-size;
+          color: $darkBlue-text-color;
+          display: flex;
+          align-items: center;
+
+          svg {
+            margin-right: 1.2rem;
+
+            &:last-child {
+              margin-right: 0;
+            }
+          }
+
+          a {
+            font-size: $text-size;
+            color: $darkBlue-text-color;
+            text-decoration: none;
+          }
+        }
+
+        .button {
+          margin-top: 1rem;
+          font-size: 1.2rem;
+          width: 15.3rem;
+          height: 3.6rem;
+        }
+      }
+    }
+
+    .footer-bottom {
+      margin-top: .6rem;
+      font-size: $text-size;
+      color: $blue-text-color;
+    }
+  }
+}
