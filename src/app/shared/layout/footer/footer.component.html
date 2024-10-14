@@ -40,7 +40,7 @@
         <div class="footer-middle-text"><a href="tel:+74993431334">
           +7 (499) 343-13-34
         </a></div>
-        <button class="button">Перезвоните мне</button>
+        <button class="button" (click)="openPopup()">Перезвоните мне</button>
       </div>
       <div class="footer-middle-block">
         <div class="footer-middle-title">E-mail</div>
@@ -78,3 +78,27 @@
 
   </div>
 </footer>
+
+
+<ng-template #popupConsultation>
+  <div class="service-popup">
+    <div class="service-popup-close" (click)="closePopup()">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="1.93562" y1="2.64999" x2="13.9564" y2="14.6708" stroke="#BEBEBE" stroke-linecap="round"/>
+        <line x1="13.9236" y1="2.62978" x2="1.90277" y2="14.6506" stroke="#BEBEBE" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="service-popup-title">Закажите бесплатную
+      консультацию!
+    </div>
+    <div class="service-popup-form">
+      <div class="popup-input">
+        <input type="text" placeholder="Ваше имя">
+      </div>
+      <div class="popup-input">
+        <input type="text" placeholder="Ваш номер телефона">
+      </div>
+    </div>
+    <button class="button">Заказать консультацию</button>
+  </div>
+</ng-template>

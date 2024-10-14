@@ -45,6 +45,7 @@ html {
   box-sizing: border-box;
   cursor: pointer;
   border: 0;
+  height: 5.1rem;
   font: 500 1.6rem "Montserrat", sans-serif;
   color: #fff;
 }
@@ -63,7 +64,7 @@ input {
 .owl-theme {
   .owl-nav .owl-prev {
     position: absolute;
-    top: 25rem;
+    top: calc(50% - .5rem);
     left: 0;
     background: url("../../assets/images/icon/Previous.svg") no-repeat center / contain transparent;
     width: 28px;
@@ -76,7 +77,7 @@ input {
 
   .owl-nav .owl-next {
     position: absolute;
-    top: 25rem;
+    top: calc(50% - .5rem);
     right: 0;
     background: url("../../assets/images/icon/Next.svg") no-repeat center / contain transparent;
     width: 28px;
@@ -107,5 +108,9 @@ input {
 
 .owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
   background: white !important;
+}
+
+.mat-dialog-container {
+  padding: 0!important;
 }
 

@@ -1,6 +1,10 @@
 @import "../../../assets/styles/variables";
+@import "../../../assets/styles/mixin";
+@import "../../../assets/styles/popup";
 
 .main {
+  margin-bottom: 12rem;
+
   .container {
     position: relative;
 
@@ -47,9 +51,9 @@
         }
 
         .slide-left-button {
+
           button.button {
             width: 16.3rem;
-            height: 5.1rem;
             font: 400 16px "Montserrat", sans-serif;
             color: #fff;
           }
@@ -63,6 +67,380 @@
         img {
           width: 750px;
           height: 500px;
+        }
+      }
+    }
+  }
+}
+
+.services {
+  margin-bottom: 12rem;
+
+  .container {
+    .services-title {
+      @include head-lora-38;
+      color: $blue-text-color;
+      text-align: start;
+      margin-bottom: 4rem;
+    }
+
+    .services-items {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+
+      .services-item {
+        width: 29rem;
+        height: 49.8rem;
+        box-sizing: border-box;
+        margin-right: 2.6rem;
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        .services-item-image {
+          background-position: center;
+          background-size: cover;
+          border-radius: 5px;
+          width: 29.1rem;
+          height: 29.1rem;
+        }
+
+        .services-item-title {
+          font-size: 2rem;
+          color: $blue-text-color;
+          margin-top: 1.5rem;
+        }
+
+        .services-item-text {
+          font-size: 1.4rem;
+          line-height: 130%;
+          color: $blue-text-color;
+          margin-top: 1rem;
+        }
+
+        .services-item-actions {
+          margin-top: 3.3rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          .services-item-action-price {
+            font: 600 20px / 1.3 "Montserrat", sans-serif;
+            color: $blue-text-color;
+          }
+
+          .services-item-action-button {
+            button.button {
+              width: 16.3rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.aboutUs {
+  margin-bottom: 12rem;
+
+  .container {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+
+    .aboutUs-content {
+      margin-left: 6.8rem;
+
+      .aboutUs-title {
+        @include head-lora-38;
+        color: $blue-text-color;
+        text-align: start;
+        margin-bottom: 2rem;
+      }
+
+      .aboutUs-text {
+        width: 63.3rem;
+        font-weight: 400;
+        font-size: 1.4rem;
+        line-height: 130%;
+        text-align: start;
+        margin-bottom: 4rem;
+
+        span {
+          font: 500 1.4rem "Montserrat", sans-serif;
+          color: #1e1a2b;
+        }
+      }
+
+      .aboutUs-advantages {
+        .aboutUs-advantages-title {
+          font: 400 26px / 1.3 "Lora", sans-serif;
+          color: $blue-text-color;
+          text-align: start;
+          margin-bottom: 2rem;
+        }
+
+        .aboutUs-advantages-items {
+          display: grid;
+          grid-template-columns: repeat(2, 316px);
+          gap: 2rem 7.1rem; /* Отступ между колонками */
+          width: 700px;
+
+          .aboutUs-advantages-item {
+
+            display: flex;
+            align-items: center;
+            height: 9rem;
+
+            .advantages-number {
+              width: 15rem;
+              text-align: center;
+              background: url("../../../assets/images/agvenges-svg.svg") no-repeat center / contain;
+              color: $blue-text-color;
+              font: 500 5rem "Lora", sans-serif;
+              padding-bottom: 1.4rem;
+            }
+
+            .advantages-text {
+              margin-left: 2rem;
+              font-weight: 400;
+              font-size: 1.4rem;
+              line-height: 130%;
+              text-align: start;
+
+              span {
+                font: 500 1.4rem "Montserrat", sans-serif;
+                color: #1e1a2b;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.popular {
+  margin-bottom: 12rem;
+
+  .container {
+
+
+    .popular-title {
+      @include head-lora-38;
+      color: $blue-text-color;
+      text-align: start;
+      margin-bottom: 4rem;
+    }
+
+    .popular-items {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .popular-item {
+        width: 29.2rem;
+        height: 57.1rem;
+        margin-right: 2.4rem;
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        .popular-item-image {
+          background-position: center;
+          background-size: cover;
+          border-radius: 5px;
+          width: 29.1rem;
+          height: 29.1rem;
+        }
+
+        .popular-item-title {
+          font-size: 2rem;
+          color: $blue-text-color;
+          margin-top: 1.5rem;
+        }
+
+        .popular-item-text {
+          margin-top: 1rem;
+          font: 400 14px / 1.3 "Montserrat", sans-serif;
+          color: #071739;
+        }
+
+        .popular-item-actions {
+          margin-top: 6.4rem;
+
+          a {
+            font: 400 1.6rem "Montserrat", sans-serif;
+            text-decoration: underline;
+            color: $blue-text-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+.reviews {
+  margin-bottom: 12rem;
+
+  .container {
+    .reviews-title {
+      @include head-lora-38;
+      color: $blue-text-color;
+      text-align: start;
+      margin-bottom: 2rem;
+    }
+
+    .reviews-carousel {
+
+      position: relative;
+
+      .reviews-item {
+        width: 39.6rem;
+        height: 26.7rem;
+        padding: 3rem;
+        box-sizing: border-box;
+        border: 2px solid $blue-text-color;
+        border-radius: 5px;
+
+        .reviews-item-person {
+          display: flex;
+          align-items: center;
+          margin-bottom: 1.5rem;
+
+          .review-item-image {
+            width: 6rem;
+            height: 6rem;
+            border-radius: 50%;
+            background-position: center;
+            background-size: cover;
+          }
+
+          .reviews-person-name {
+            font: 600 18px "Montserrat", sans-serif;
+            color: $blue-text-color;
+            margin-left: 2.6rem;
+          }
+        }
+
+        .reviews-person-comment {
+          font: 400 1.6rem / 1.4 "Montserrat", sans-serif;
+          color: #071739;
+        }
+      }
+
+      .reviews-arrows {
+        display: flex;
+
+        a {
+          top: calc(50% - .5rem);
+          display: flex;
+          position: absolute;
+          cursor: pointer;
+
+          &.move-backward {
+            left: -4.1rem;
+          }
+
+          &.move-forward {
+            right: -4.1rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+.contacts {
+  margin-bottom: 12rem;
+
+  .container {
+    display: flex;
+    align-items: start;
+
+    .map iframe {
+      vertical-align: bottom;
+    }
+
+    .contact {
+      margin-left: 2.6rem;
+
+      .contact-title {
+        @include head-lora-38;
+        color: $blue-text-color;
+        text-align: start;
+        margin-bottom: 2rem;
+      }
+
+      .contact-address {
+        margin-bottom: 2rem;
+
+        .contact-address-title {
+          font-size: 2rem;
+          color: $blue-text-color;
+          margin-bottom: 1rem;
+        }
+
+        .contact-address-text {
+          max-width: 50rem;
+          font: 400 14px / 1.3 "Montserrat", sans-serif;
+          color: #071739;
+        }
+      }
+
+
+      .contact-phone {
+        margin-bottom: 2rem;
+
+        .contact-phone-title {
+          font-size: 2rem;
+          color: $blue-text-color;
+          margin-bottom: 1rem;
+        }
+
+        a {
+          font: 400 14px / 1.3 "Montserrat", sans-serif;
+          color: #071739;
+          text-decoration: none;
+          cursor: pointer;
+        }
+      }
+
+      .contact-email {
+        margin-bottom: 2rem;
+
+        .contact-email-title {
+          font-size: 2rem;
+          color: $blue-text-color;
+          margin-bottom: 1rem;
+        }
+
+        a {
+          font: 400 14px / 1.3 "Montserrat", sans-serif;
+          color: #071739;
+          text-decoration: none;
+          cursor: pointer;
+        }
+      }
+
+      .contact-social {
+        .contact-social-title {
+          font-size: 2rem;
+          color: $blue-text-color;
+          margin-bottom: 1rem;
+        }
+
+        a {
+          margin-right: 2rem;
+          text-decoration: none;
+          cursor: pointer;
+
+          &:last-child {
+            margin-right: 0;
+          }
         }
       }
     }

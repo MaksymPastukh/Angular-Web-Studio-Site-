@@ -1,0 +1,69 @@
+@import "mixin";
+@import "variables";
+
+.service-popup {
+  padding: 9.4rem 15.2rem 8.4rem 15.2rem;
+  position: relative;
+  text-align: center;
+  background: #ffffff;
+
+  .service-popup-close {
+    position: absolute;
+    cursor: pointer;
+    top: 3rem;
+    right: 3rem;
+  }
+
+  .service-popup-title {
+    @include head-lora-38;
+    color: $blue-text-color;
+    margin-bottom: 2rem;
+    max-width: 40.6rem;
+  }
+
+  .service-popup-form {
+    margin-bottom: 2rem;
+
+    .popup-select {
+      width: 42.2rem;
+      height: 5.3rem;
+      padding: 1.7rem 2rem;
+      font: 400 14px / 1.3 "Montserrat", sans-serif;
+      color: $blue-text-color;
+      border: .2rem solid $blue-text-color;
+      border-radius: .5rem;
+      margin-bottom: 1rem;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      cursor: pointer;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+
+
+    .popup-input {
+      margin-bottom: .5rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      input {
+        width: 42.2rem;
+        height: 5.3rem;
+
+      }
+    }
+  }
+
+  .button {
+    width: 42.2rem;
+    font: 400 16px "Montserrat", sans-serif;
+    color: #fff;
+  }
+
+}
