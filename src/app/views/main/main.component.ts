@@ -1,7 +1,6 @@
 import {Component, ElementRef, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {OwlOptions} from "ngx-owl-carousel-o";
 import {MainSliderType} from "../../../types/main-slider.type";
-import {DomSanitizer} from "@angular/platform-browser";
 import {MainReviewsType} from "../../../types/main-reviews.type";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 
@@ -11,29 +10,22 @@ import {MatDialog, MatDialogRef} from "@angular/material/dialog";
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
-  //bypassSecurityTrustHtml => Используется для того что бы html тегам можно было навесить стили, без этого метода Angular из-за безопасти очищает все свойства
   public mainSlider: MainSliderType = [
     {
       title: 'Предложение месяца',
-      text: this.sanitizer.bypassSecurityTrustHtml(
-        'Продвижение в Instagram для вашего бизнеса <span style="color: #709fdc">-15%</span>!'
-      ),
+      text: 'Продвижение в Instagram для вашего бизнеса <span>-15%</span>!',
       description: '',
       image: 'slide-1.png',
     },
     {
       title: 'Акция',
-      text: this.sanitizer.bypassSecurityTrustHtml(
-        'Нужен грамотный <span style="color: #709fdc">копирайтер</span>?'
-      ),
+      text: 'Нужен грамотный <span>копирайтер</span>?',
       description: 'Весь декабрь у нас действует акция на работу копирайтера.',
       image: 'slide-2.png',
     },
     {
       title: 'Новость дня',
-      text: this.sanitizer.bypassSecurityTrustHtml(
-        '<span style="color: #709fdc">6 место</span> в ТОП 10 <br>SMM-агенств Москвы'
-      ),
+      text: '<span>6 место</span> в ТОП 10 <br>SMM-агенств Москвы',
       description: 'Мы благодарим каждого, кто голосовал за нас!',
       image: 'slide-3.png',
     },
@@ -98,7 +90,6 @@ export class MainComponent implements OnInit {
   @ViewChild('popupApplication') popup!: TemplateRef<ElementRef>
 
   constructor(
-    private sanitizer: DomSanitizer,
     private dialog: MatDialog,
   ) {
   }
