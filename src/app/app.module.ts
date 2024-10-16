@@ -10,6 +10,10 @@ import { MainComponent } from './views/main/main.component';
 import {CarouselModule} from "ngx-owl-carousel-o";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatDialogModule} from "@angular/material/dialog";
+import {HttpClientModule} from "@angular/common/http";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from "@angular/material/snack-bar";
+import {PopupComponent} from "./shared/components/popup/popup.component";
 
 @NgModule({
   declarations: [
@@ -17,16 +21,24 @@ import {MatDialogModule} from "@angular/material/dialog";
     LayoutComponent,
     HeaderComponent,
     FooterComponent,
+    PopupComponent,
     MainComponent,
   ],
   imports: [
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSnackBarModule,
     BrowserModule,
     CarouselModule,
     AppRoutingModule,
     MatDialogModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+
+  providers: [
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,8 +1,17 @@
-import {Component, ElementRef, OnInit, TemplateRef, ViewChild} from '@angular/core';
-import {OwlOptions} from "ngx-owl-carousel-o";
-import {MainSliderType} from "../../../types/main-slider.type";
-import {MainReviewsType} from "../../../types/main-reviews.type";
-import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core'
+import { OwlOptions } from "ngx-owl-carousel-o"
+import { MainSliderType } from "../../../types/main-slider.type"
+import { MainReviewsType } from "../../../types/main-reviews.type"
+import { MatDialog, MatDialogRef } from "@angular/material/dialog"
+import { ArticleService } from "../../shared/services/article.service"
+import { PopularArticleType } from "../../../types/popular-article.type"
+import { DefaultResponseType } from "../../../types/default-response.type"
+import { environment } from "../../../environments/environment"
+import { MainServicesType } from "../../../types/main-services.type"
+import { PopupService } from "../../shared/services/popup.service"
+import { FormBuilder } from "@angular/forms"
+import { ServiceTypes } from "../../../types/serviceTypes.type"
+import { MatSnackBar } from "@angular/material/snack-bar"
 
 @Component({
   selector: 'app-main',
@@ -44,6 +53,34 @@ export class MainComponent implements OnInit {
       image: 'person3.png',
       text: 'Команда АйтиШторма за такой короткий промежуток времени сделала невозможное: от простой фирмы по услуге продвижения выросла в мощный блог о важности личного бренда. Класс!'
     },]
+  public services: MainServicesType = [
+    {
+      image: 'services1.png',
+      title: 'Создание сайтов',
+      text: 'В краткие сроки мы создадим качественный и самое главное продающий сайт для продвижения Вашего бизнеса!',
+      price: 'От 7 500₽',
+      service: ServiceTypes.development,
+    }, {
+      image: 'services2.png',
+      title: 'Продвижение',
+      text: 'Вам нужен качественный SMM-специалист или грамотный таргетолог? Мы готовы оказать Вам услугу “Продвижения” на наивысшем уровне!',
+      price: 'От 3 500₽',
+      service: ServiceTypes.advancement,
+    }, {
+      image: 'services3.png',
+      title: 'Реклама',
+      text: 'Без рекламы не может обойтись ни один бизнес или специалист. Обращаясь к нам, мы гарантируем быстрый прирост клиентов за счёт правильно настроенной рекламы.',
+      price: 'От 1 000₽',
+      service: ServiceTypes.advertising,
+    }, {
+      image: 'services4.png',
+      title: 'Копирайтинг',
+      text: ' Наши копирайтеры готовы написать Вам любые продающие текста, которые не только обеспечат рост охватов, но и помогут выйти на новый уровень в продажах.',
+      price: 'От 750₽',
+      service: ServiceTypes.copyrighting,
+    },]
+  public popularArticle: PopularArticleType | null = null
+  public serverStaticPath: string = environment.serverStaticPath
 
 
   customOptions: OwlOptions = {
@@ -62,7 +99,6 @@ export class MainComponent implements OnInit {
     },
     nav: true
   }
-
   customOptionsReviews: OwlOptions = {
     loop: true,
     mouseDrag: false,
@@ -86,23 +122,32 @@ export class MainComponent implements OnInit {
     nav: false
   }
 
-  dialogRef: MatDialogRef<any> | null = null
-  @ViewChild('popupApplication') popup!: TemplateRef<ElementRef>
+  public dialogService: MatDialogRef<any> | null = null
+  @ViewChild('popup') popup!: TemplateRef<ElementRef>
+
 
   constructor(
     private dialog: MatDialog,
+    private articleService: ArticleService,
+    private popupService: PopupService,
+    private fb: FormBuilder,
+    private _snackBar: MatSnackBar
   ) {
   }
 
   ngOnInit(): void {
+    this.articleService.getArticle()
+      .subscribe((data: PopularArticleType | DefaultResponseType) => {
+        if ((data as DefaultResponseType).message !== undefined) {
+          throw new Error((data as DefaultResponseType).message)
+        }
+
+        this.popularArticle = data as PopularArticleType
+      })
   }
 
-  openPopup() {
-    this.dialogRef = this.dialog.open(this.popup)
+  openPopup(service: string, isService: boolean) {
+    this.popupService.services(service, isService)
+    this.dialogService = this.dialog.open(this.popup)
   }
-
-  closePopup() {
-    this.dialogRef?.close()
-  }
-
 }

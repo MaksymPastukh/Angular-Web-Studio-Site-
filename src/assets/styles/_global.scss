@@ -48,6 +48,11 @@ html {
   height: 5.1rem;
   font: 500 1.6rem "Montserrat", sans-serif;
   color: #fff;
+
+  &:disabled {
+    background: grey;
+    cursor: not-allowed;
+  }
 }
 
 input {

@@ -1,5 +1,6 @@
 import {Component, ElementRef, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {PopupService} from "../../services/popup.service";
 
 @Component({
   selector: 'app-footer',
@@ -8,21 +9,19 @@ import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 })
 export class FooterComponent implements OnInit {
 
-  constructor(private dialog: MatDialog,) { }
 
-  dialogRef: MatDialogRef<any> | null = null
-  @ViewChild('popupConsultation') popup!: TemplateRef<ElementRef>
+  constructor(private dialog: MatDialog, private popupService: PopupService
+              ) {
+  }
+
+  public dialogService: MatDialogRef<any> | null = null
+  @ViewChild('popup') popup!: TemplateRef<ElementRef>
 
   ngOnInit(): void {
   }
 
-  openPopup() {
-    this.dialogRef = this.dialog.open(this.popup)
+  openPopup(isConsultation: boolean): void {
+    this.popupService.consultation(isConsultation)
+    this.dialogService = this.dialog.open(this.popup)
   }
-
-  closePopup() {
-    this.dialogRef?.close()
-  }
-
-
 }
