@@ -53,16 +53,20 @@ header.header {
       display: flex;
       align-items: center;
 
-      a {
-        text-decoration: none;
+      .auth {
+        a {
+          text-decoration: none;
 
-        span {
-          font-size: $text-size;
-          color: $darkBlue-text-color;
-          margin-left: .7rem;
-          cursor: pointer;
+          span {
+            font-size: $text-size;
+            color: $darkBlue-text-color;
+            margin-left: .7rem;
+            cursor: pointer;
+          }
         }
       }
+
+
 
 
     }

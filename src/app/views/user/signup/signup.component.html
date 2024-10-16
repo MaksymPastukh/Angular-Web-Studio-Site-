@@ -1,25 +1,49 @@
 <section class="signup">
   <div class="container">
-    <div class="auth-form">
+    <div class="auth-form" [formGroup]="signupForm">
       <div class="auth-title">Регистрация на сайте</div>
       <div class="auth-inputs">
         <div class="auth-input">
-          <input type="text" placeholder="Ваше имя">
+          <input type="text" formControlName="name"
+                 [ngStyle]="{'border-color': name?.invalid
+                 && (name?.dirty || name?.touched) ? 'red' : ''}" placeholder="Ваше имя">
+          <div class="errors" *ngIf="name?.invalid && (name?.dirty || name?.touched)">
+            <span class="error" *ngIf="name?.errors?.['required']">*Имя обязательно для заполнения</span>
+            <span class="error" *ngIf="name?.errors?.['pattern']">*Имя - может содержать русские буквы. Каждое новое слово - с большой буквы</span>
+          </div>
         </div>
         <div class="auth-input">
-          <input type="text" placeholder="Электронная почта">
+          <input type="text" formControlName="email"
+                 [ngStyle]="{'border-color': email?.invalid
+                 && (email?.dirty || email?.touched) ? 'red' : ''}" placeholder="Электронная почта">
+          <div class="errors" *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+            <span class="error" *ngIf="email?.errors?.['required']">*Email обязателен для заполнения</span>
+            <span class="error" *ngIf="email?.errors?.['email']">*Email должен быть корректным</span>
+          </div>
         </div>
         <div class="auth-input">
-          <input type="text" placeholder="Пароль">
+          <input type="password" formControlName="password"
+                 [ngStyle]="{'border-color' : password?.invalid
+                 && (password?.dirty || password?.touched) ? 'red' : ''}" placeholder="Пароль">
+          <div class="errors" *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+            <span class="error" *ngIf="password?.errors?.['required']">*Пароль обязателен для заполнения</span>
+            <span class="error" *ngIf="password?.errors?.['pattern']">*Пароль должен быть не менее 8 символов, содержать как минимум 1 букву в верхнем регистре и как минимум 1 цифру</span>
+          </div>
         </div>
         <div class="auth-checkbox">
-          <input type="checkbox" id="remember" class="signup-checkbox">
+          <input type="checkbox" formControlName="agree"
+                 id="remember" class="signup-checkbox">
+
           <label for="remember">Я принимаю <a href="#">условия пользовательского соглашения</a> и даю <a href="#">согласие
             на обработку персональных данных.</a></label>
+
+        </div>
+        <div *ngIf="agree?.invalid && (agree?.dirty || agree?.touched)">
+          <span class="error" *ngIf="agree?.errors?.['required']">*Поле обязательно для заполнения</span>
         </div>
       </div>
       <div class="auth-button">
-        <button class="button">Зарегистрироваться</button>
+        <button class="button"  (click)="signup()" [disabled]="signupForm.invalid">Зарегистрироваться</button>
       </div>
       <div class="auth-link">
         Уже есть аккаунт? <a routerLink="/login">Войдите</a>

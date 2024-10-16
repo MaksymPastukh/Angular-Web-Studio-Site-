@@ -11,10 +11,27 @@
   }
 
   .auth-inputs {
+
     margin-bottom: 4rem;
 
     .auth-input {
+      position: relative;
+
       margin-top: .5rem;
+
+      .errors {
+        position: absolute;
+        top: .6rem;
+        left: 17rem;
+        max-width: 27.2rem !important;
+        .error {
+          color: red;
+          font-size: 1.1rem;
+          margin-left: 0!important;
+          text-align: start;
+        }
+      }
+
 
       input {
         width: 42.2rem;
@@ -24,6 +41,12 @@
         margin-top: 0;
       }
 
+    }
+
+    div .error {
+      color: red;
+      font-size: 1.1rem;
+      margin-left: 3rem;
     }
 
     .auth-checkbox {

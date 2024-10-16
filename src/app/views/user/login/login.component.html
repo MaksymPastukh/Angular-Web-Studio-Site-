@@ -1,26 +1,36 @@
 <section class="login">
   <div class="container">
-      <div class="auth-form">
-        <div class="auth-title">Войти в личный кабинет</div>
-        <div class="auth-inputs">
-            <div class="auth-input">
-              <input type="text" placeholder="Электронная почта">
-            </div>
-            <div class="auth-input">
-              <input type="password" placeholder="Пароль">
-            </div>
-            <div class="auth-checkbox">
-              <input type="checkbox" id="remember">
-              <label for="remember">Запомнить меня</label>
-            </div>
+    <div class="auth-form" [formGroup]="loginForm">
+      <div class="auth-title">Войти в личный кабинет</div>
+      <div class="auth-inputs">
+        <div class="auth-input">
+          <input type="text" formControlName="email"
+                 [ngStyle]="{'border-color': email?.invalid
+                     && (email?.dirty || email?.touched) ? 'red' : ''}" placeholder="Электронная почта">
+          <div class="errors" *ngIf="email?.invalid && (email?.dirty && email?.touched)">
+            <span class="error" *ngIf="email?.errors?.['required']">*Email обязателен для заполнения</span>
+          </div>
         </div>
-        <div class="auth-button">
-          <button class="button">Войти</button>
+        <div class="auth-input">
+          <input type="password" formControlName="password"
+                 [ngStyle]="{'border-color' : password?.invalid
+                     && (password?.dirty || password?.touched) ? 'red' : ''}" placeholder="Пароль">
+          <div class="errors" *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+            <span class="error" *ngIf="password?.errors?.['required']">*Пароль обязателен для заполнения</span>
+          </div>
         </div>
-        <div class="auth-link">
-          Нет аккаунта? <a routerLink="/signup">Пройдите регистрацию</a>
+        <div class="auth-checkbox">
+          <input type="checkbox" formControlName="rememberMe" id="remember">
+          <label for="remember">Запомнить меня</label>
         </div>
       </div>
+      <div class="auth-button">
+        <button class="button" [disabled]="loginForm.invalid" (click)="login()">Войти</button>
+      </div>
+      <div class="auth-link">
+        Нет аккаунта? <a routerLink="/signup">Пройдите регистрацию</a>
+      </div>
+    </div>
     <div class="page-image">
       <img src="../../../../assets/images/page-images/login-img.png" alt="Login image">
     </div>
