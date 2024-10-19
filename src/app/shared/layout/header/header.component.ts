@@ -26,10 +26,12 @@ export class HeaderComponent implements OnInit {
       this.userInfo = user
     })
 
-    this.authService.user()
-      .subscribe((data: UserType | DefaultResponseType) => {
-        this.userInfo = data as UserType
-      })
+    if(this.isLogged) {
+      this.authService.user()
+        .subscribe((data: UserType | DefaultResponseType) => {
+          this.userInfo = data as UserType
+        })
+    }
   }
 
   logout(): void {

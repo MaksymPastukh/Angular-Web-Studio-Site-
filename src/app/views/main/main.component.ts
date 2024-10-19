@@ -134,7 +134,6 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
     this.articleService.getArticle()
       .subscribe((data: PopularArticleType | DefaultResponseType) => {
-        console.log(data)
         if ((data as DefaultResponseType).message !== undefined) {
           throw new Error((data as DefaultResponseType).message)
         }
