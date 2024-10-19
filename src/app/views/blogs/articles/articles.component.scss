@@ -1,0 +1,118 @@
+@import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/mixin";
+
+.articles {
+  padding-top: 8rem;
+  padding-bottom: 12rem;
+
+  .container {
+
+    .articles-title {
+      @include head-lora-38;
+      color: $blue-text-color;
+      margin-bottom: 4rem;
+    }
+
+    .articles-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+
+      .articles-applied-filters {
+        display: flex;
+        flex-wrap: wrap;
+
+        .articles-applied-filter {
+          border: 1px solid $blue-text-color;
+          border-radius: .5rem;
+          padding: .8rem 2rem;
+          font-size: 1.6rem;
+          color: $blue-text-color;
+          display: flex;
+          align-items: center;
+          margin-right: 2rem;
+          margin-bottom: 2rem;
+
+          a {
+            text-decoration: none;
+            cursor: pointer;
+            display: flex;
+            margin-left: .8rem;
+          }
+        }
+      }
+
+      .articles-sort {
+        width: 14.8rem;
+        min-width: 14.8rem;
+        box-sizing: border-box;
+        position: relative;
+        font-size: 1.6rem;
+        cursor: pointer;
+
+        .articles-sort-head {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          color: #071739;
+          padding: 1.2rem 0 1.2rem 2.3rem;
+        }
+
+        .articles-sort-body {
+          position: absolute;
+          width: 100%;
+          box-sizing: border-box;
+          z-index: 10;
+          display: none;
+          color: #bebebe;
+
+          .articles-sort-item {
+            cursor: pointer;
+            padding: 1.2rem 2.3rem;
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+
+            &.active {
+              color: #313131;
+            }
+          }
+        }
+
+        &.open {
+          width: 26.4rem;
+          min-width: 26.4rem;
+
+          .articles-sort-head {
+            background: #b9d5fd;
+            border-radius: 5px 5px 0 0;
+            padding: 1.2rem 1.6rem 1.2rem 2.3rem;
+
+          }
+
+          .articles-sort-body {
+            display: block;
+            background: #fff;
+            border: 1px solid #b9d5fd;
+            border-radius: 0 0 5px 5px;
+
+            .articles-sort-item {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+            }
+          }
+        }
+      }
+    }
+
+    .articles-layout {
+      .articles-card {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 4rem 2.4rem;
+      }
+    }
+  }
+}

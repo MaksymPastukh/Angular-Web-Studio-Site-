@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
+import {ArticleService} from "../../../shared/services/article.service";
+import {CategoriesType} from "../../../../types/categories.type";
+import {DefaultResponseType} from "../../../../types/default-response.type";
+import {ArticlesType} from "../../../../types/articles.type";
 
 @Component({
   selector: 'app-article-card',
@@ -7,9 +11,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArticlesComponent implements OnInit {
 
-  constructor() { }
+  public sortingOpen: boolean = false
+  public categorySort!: CategoriesType
+  public articles!: ArticlesType
+
+  constructor(private articleService: ArticleService) {
+  }
 
   ngOnInit(): void {
+
+    this.articleService.getCategories()
+      .subscribe((category: CategoriesType | DefaultResponseType) => {
+        this.categorySort = category as CategoriesType
+
+
+        this.articleService.getArticles()
+          .subscribe((data: ArticlesType) => {
+            this.articles = data as ArticlesType
+
+          })
+
+
+      })
+  }
+
+
+  toggleSorting() {
+    this.sortingOpen = !this.sortingOpen
+  }
+
+  @HostListener('document:click', ['$event'])
+  click(event: Event): void {
+    if (this.sortingOpen && (event.target as HTMLElement).className.indexOf('articles-sort') === -1) {
+      this.sortingOpen = false
+    }
   }
 
 }

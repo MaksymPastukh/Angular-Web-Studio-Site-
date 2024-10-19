@@ -36,9 +36,16 @@ header.header {
           a {
             text-decoration: none;
             font-size: $text-size;
-            color: $darkBlue-text-color
+            color: $darkBlue-text-color;
+
+            &.active {
+              color: $blue-text-color;
+            }
           }
         }
+
+
+
       }
     }
 

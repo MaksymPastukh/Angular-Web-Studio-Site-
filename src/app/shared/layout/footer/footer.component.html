@@ -21,11 +21,11 @@
       <div class="footer-top-menu">
         <nav>
           <ul>
-            <li><a>Услуги</a></li>
-            <li><a>О нас</a></li>
-            <li><a>Статьи</a></li>
-            <li><a>Отзывы</a></li>
-            <li><a>Контакты</a></li>
+            <li><a routerLink="/" fragment="services">Услуги</a></li>
+            <li><a routerLink="/" fragment="aboutUs">О нас</a></li>
+            <li><a routerLinkActive="active" routerLink="/articles">Статьи</a></li>
+            <li><a routerLink="/" fragment="reviews">Отзывы</a></li>
+            <li><a routerLink="/" fragment="contact"> Контакты</a></li>
           </ul>
         </nav>
       </div>
@@ -72,8 +72,6 @@
                 fill="#071739"/>
             </svg>
           </a>
-
-
         </div>
       </div>
     </div>
@@ -83,6 +81,6 @@
   </div>
 </footer>
 
-<ng-template  #popup>
+<ng-template #popup>
   <app-popup [dialogService]="dialogService"></app-popup>
 </ng-template>
