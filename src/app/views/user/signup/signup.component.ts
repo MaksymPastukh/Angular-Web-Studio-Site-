@@ -69,8 +69,8 @@ export class SignupComponent implements OnInit {
               error = (data as DefaultResponseType).message
             }
 
-            const loginResponse: LoginResponseType = data as LoginResponseType
-            if (!loginResponse.accessToken || !loginResponse.refreshToken || !loginResponse.userId) {
+            const signupResponse: LoginResponseType = data as LoginResponseType
+            if (!signupResponse.accessToken || !signupResponse.refreshToken || !signupResponse.userId) {
               error = `Ошибка при авторизации`
             }
 
@@ -79,8 +79,9 @@ export class SignupComponent implements OnInit {
               throw new Error(error)
             }
 
-            this.authService.setTokens(loginResponse.accessToken, loginResponse.refreshToken)
-            this.authService.userId = loginResponse.userId
+            this.authService.setTokens(signupResponse.accessToken, signupResponse.refreshToken)
+            this.authService.userId = signupResponse.userId
+            this.authService.getUserInfo()
             this._snackBar.open(`Вы успешно зарегистрировались`)
             this.router.navigate(['/'])
           },

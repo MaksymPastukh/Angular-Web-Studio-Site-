@@ -48,12 +48,16 @@
           <span>Войти</span>
         </a>
       </div>
-      <div class="auth" *ngIf="isLogged">
+      <div class="auth" *ngIf="isLogged && userInfo" [matMenuTriggerFor]="menu">
         <a>
-          <span>Test</span>
+          <span>{{ userInfo.name }}</span>
         </a>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>
+            <span (click)="logout()">Выход</span>
+          </button>
+        </mat-menu>
       </div>
-
     </div>
   </div>
 </header>

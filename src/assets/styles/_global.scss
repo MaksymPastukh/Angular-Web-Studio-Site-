@@ -123,3 +123,23 @@ input {
   color: $blue-text-color;
 }
 
+.mat-menu-item {
+  font: 400 15px "Montserrat", sans-serif;
+
+  a {
+    text-decoration: none;
+    color: $blue-text-color;
+  }
+}
+.mat-menu-panel {
+  margin: 1rem 0 0 1rem;
+  min-width: 82px!important;
+  min-height: 22px!important;
+  background-color: white!important;
+
+  span {
+    text-decoration: none;
+    color: $blue-text-color;
+  }
+}
+

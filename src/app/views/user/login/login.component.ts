@@ -7,6 +7,7 @@ import {LoginType} from "../../../../types/auth-types/login.type";
 import {LoginResponseType} from "../../../../types/auth-types/login-response.type";
 import {DefaultResponseType} from "../../../../types/default-response.type";
 import {HttpErrorResponse} from "@angular/common/http";
+import {UserType} from "../../../../types/auth-types/user.type";
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,7 @@ import {HttpErrorResponse} from "@angular/common/http";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  public isLogged: boolean = false
 
   public loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -36,7 +38,9 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private authService: AuthService,
               private _snackBar: MatSnackBar,
-              private router: Router) {
+              private router: Router,) {
+    this.isLogged = this.authService.getIsLoggedIn()
+
   }
 
   ngOnInit(): void {
@@ -75,6 +79,7 @@ export class LoginComponent implements OnInit {
 
             this.authService.setTokens(loginResponse.accessToken, loginResponse.refreshToken)
             this.authService.userId = loginResponse.userId
+            this.authService.getUserInfo()
             this._snackBar.open(`Вы успешно авторизовались`)
             this.router.navigate(['/'])
           },
@@ -88,4 +93,5 @@ export class LoginComponent implements OnInit {
         })
     }
   }
+
 }

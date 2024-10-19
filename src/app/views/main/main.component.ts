@@ -150,4 +150,5 @@ export class MainComponent implements OnInit {
     this.popupService.services(service, isService)
     this.dialogService = this.dialog.open(this.popup)
   }
+
 }
