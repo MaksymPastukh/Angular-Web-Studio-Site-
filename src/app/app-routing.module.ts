@@ -14,13 +14,17 @@ const routes: Routes = [
         path: '',
         loadChildren: () => import('./views/user/user.module').then(m => m.UserModule),
         canActivate: [AuthForwardGuard],
-      }
+      },
+      {
+        path: '',
+        loadChildren: () => import('./views/blogs/blogs.module').then(m => m.BlogsModule)
+      },
     ]
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {anchorScrolling: 'enabled', scrollPositionRestoration: 'enabled'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule {

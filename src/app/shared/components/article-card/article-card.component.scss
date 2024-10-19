@@ -1,0 +1,61 @@
+@import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/mixin";
+
+.article-item {
+  width: 29.2rem;
+  height: 63.1rem;
+  margin-right: 2.4rem;
+  box-sizing: border-box;
+  position: relative;
+
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  .article-item-image {
+    background-position: center;
+    background-size: cover;
+    border-radius: 5px;
+    width: 29.1rem;
+    height: 29.1rem;
+  }
+
+  .article-item-title {
+    font-size: 2rem;
+    color: $blue-text-color;
+    margin-top: 1.5rem;
+  }
+
+  .article-item-text {
+    margin-top: 1rem;
+    font: 400 1.4rem / 1.3 "Montserrat", sans-serif;
+    color: #071739;
+  }
+
+  .article-item-category {
+    position: absolute;
+    top: 1rem;
+    right: .9rem;
+    border-radius: 5px;
+    padding: 1rem 1.8rem;
+    background-color: #ffffff;
+    font: 400 11px "Montserrat", sans-serif;
+    text-align: center;
+    color: $blue-text-color;
+  }
+
+  a {
+    font: 400 1.6rem "Montserrat", sans-serif;
+    text-decoration: underline;
+    color: $blue-text-color;
+    cursor: pointer;
+
+    &.read-more {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+  }
+
+}

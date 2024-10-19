@@ -109,20 +109,7 @@
   <div class="container">
     <div class="popular-title">Популярные статьи из блога</div>
     <div class="popular-items">
-      <div class="popular-item" *ngFor="let article of popularArticle">
-        <div
-          class="popular-item-image"
-          style="background-image: url({{ serverStaticPath + article.image }})"
-        ></div>
-        <div class="popular-item-title">
-          {{ article.title }}
-        </div>
-        <div class="popular-item-text">
-          {{ article.description }}
-        </div>
-        <div class="popular-item-category">{{ article.category }}</div>
-        <a class="read-more">Читать дальше</a>
-      </div>
+      <article-card [article]="article"  *ngFor="let article of popularArticles"></article-card>
     </div>
   </div>
 </section>

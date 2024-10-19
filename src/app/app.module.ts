@@ -12,9 +12,9 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from "@angular/material/snack-bar";
-import {PopupComponent} from "./shared/components/popup/popup.component";
 import {AuthInterceptor} from "./core/auth/auth.interceptor";
 import {MatMenuModule} from "@angular/material/menu";
+import {SharedModule} from "./shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -22,7 +22,6 @@ import {MatMenuModule} from "@angular/material/menu";
     LayoutComponent,
     HeaderComponent,
     FooterComponent,
-    PopupComponent,
     MainComponent,
   ],
   imports: [
@@ -32,6 +31,7 @@ import {MatMenuModule} from "@angular/material/menu";
     MatSnackBarModule,
     BrowserModule,
     CarouselModule,
+    SharedModule,
     AppRoutingModule,
     MatDialogModule,
     BrowserAnimationsModule,

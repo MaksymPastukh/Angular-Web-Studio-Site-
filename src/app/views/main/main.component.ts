@@ -6,7 +6,6 @@ import { MatDialog, MatDialogRef } from "@angular/material/dialog"
 import { ArticleService } from "../../shared/services/article.service"
 import { PopularArticleType } from "../../../types/popular-article.type"
 import { DefaultResponseType } from "../../../types/default-response.type"
-import { environment } from "../../../environments/environment"
 import { MainServicesType } from "../../../types/main-services.type"
 import { PopupService } from "../../shared/services/popup.service"
 import { FormBuilder } from "@angular/forms"
@@ -79,8 +78,7 @@ export class MainComponent implements OnInit {
       price: 'От 750₽',
       service: ServiceTypes.copyrighting,
     },]
-  public popularArticle: PopularArticleType | null = null
-  public serverStaticPath: string = environment.serverStaticPath
+  public popularArticles: PopularArticleType | null = null
 
 
   customOptions: OwlOptions = {
@@ -130,19 +128,18 @@ export class MainComponent implements OnInit {
     private dialog: MatDialog,
     private articleService: ArticleService,
     private popupService: PopupService,
-    private fb: FormBuilder,
-    private _snackBar: MatSnackBar
   ) {
   }
 
   ngOnInit(): void {
     this.articleService.getArticle()
       .subscribe((data: PopularArticleType | DefaultResponseType) => {
+        console.log(data)
         if ((data as DefaultResponseType).message !== undefined) {
           throw new Error((data as DefaultResponseType).message)
         }
 
-        this.popularArticle = data as PopularArticleType
+        this.popularArticles = data as PopularArticleType
       })
   }
 
