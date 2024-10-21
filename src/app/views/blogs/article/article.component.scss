@@ -1,0 +1,196 @@
+@import "../../../../assets/styles/mixin";
+@import "../../../../assets/styles/variables";
+
+.article {
+  padding-top: 8rem;
+  padding-bottom: 6rem;
+
+  .container {
+    .breadcrumb {
+      list-style: none;
+      padding: 10px 0;
+
+      .breadcrumb-item {
+        display: inline;
+
+        a {
+          text-decoration: none;
+          font-size: 1.6rem;
+          color: #b9d5fd;
+        }
+
+        &.active {
+          font: 500 16px / 1.3 "Montserrat", sans-serif;
+          color: $blue-text-color;
+        }
+      }
+    }
+
+    .article-head {
+      margin-top: 6rem;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+
+      .article-head-block {
+        width: 60.7rem;
+
+        .article-title {
+          @include head-lora-38;
+          color: $blue-text-color;
+        }
+
+        .article-subtitle {
+          margin-top: 4rem;
+          font-size: 2rem;
+          color: $blue-text-color;
+        }
+      }
+
+      .article-head-image {
+        background-position: center;
+        background-size: cover;
+        border-radius: 5px;
+        width: 52.7rem;
+        height: 32rem;
+      }
+    }
+
+    .article-layout {
+      margin-top: 6rem;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+
+      .article-main {
+        width: 81.8rem;
+
+        .article-share-social {
+          display: flex;
+          align-items: center;
+          font-size: 1.4rem;
+          color: $blue-text-color;
+
+          .social-buttons {
+            margin-top: 0.3rem;
+            margin-left: 2rem;
+
+            a {
+              margin-right: 1.3rem;
+            }
+          }
+        }
+
+        .article-comment {
+          margin-top: 12rem;
+
+          .article-comment-title {
+            @include head-lora-38;
+            color: $blue-text-color;
+          }
+
+          .article-comment-form {
+            margin-top: 4rem;
+            display: flex;
+            flex-direction: column;
+
+            textarea {
+              height: 24.8rem;
+              border: 2px solid $blue-text-color;
+              padding: 2rem;
+              border-radius: 3px;
+
+              &::placeholder {
+                font: 400 1.4rem "Montserrat", sans-serif;
+                color: #a8aba7;
+              }
+            }
+
+            .button {
+              margin-top: 2rem;
+              width: 42.2rem;
+            }
+          }
+
+          .article-comment-items {
+            margin-top: 6rem;
+
+            .article-comment-item {
+              .commentator {
+                display: flex;
+                align-items: center;
+                margin-bottom: 2.4rem;
+
+                .commentator-info {
+                  margin-left: 2.6rem;
+
+                  .commentator-name {
+                    font: 600 1.8rem "Montserrat", sans-serif;
+                    color: $blue-text-color;
+                    margin-bottom: 1rem;
+                  }
+
+                  .commentator-date {
+                    font: 600 14px "Montserrat", sans-serif;
+                    color: #bebebe;
+                  }
+                }
+              }
+
+              .comment-text {
+                width: 85.4rem;
+                font: 400 14px / 1.4 "Montserrat", sans-serif;
+                color: $darkBlue-text-color;
+              }
+
+              .comment-reactions {
+                display: flex;
+                align-items: center;
+                margin-top: 3.9rem;
+
+                span {
+                  margin-right: 0.2rem;
+                  font: 600 14px / 1.4 "Montserrat", sans-serif;
+                  color: #071739;
+
+                  &.active {
+                    color: $blue-text-color;
+                  }
+                }
+
+                .like {
+                  display: flex;
+                  align-items: flex-end;
+                  margin-right: 1.5rem;
+                }
+
+                .dislike {
+                  display: flex;
+                  align-items: flex-end;
+                  margin-right: 1.5rem;
+                }
+
+                &.active {
+                  svg {
+                    path {
+                      stroke: $blue-text-color;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .article-related {
+      margin-top: 6rem;
+      .articles-related-title {
+        font-size: 2.6rem;
+        color: $blue-text-color;
+        margin-bottom: 2rem;
+      }
+    }
+  }
+}

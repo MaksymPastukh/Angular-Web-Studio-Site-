@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {environment} from "../../../../environments/environment";
-import {ArticleType} from "../../../../types/article.type";
+import { Component, Input, OnInit } from '@angular/core'
+import { environment } from "../../../../environments/environment"
+import { ArticleType } from "../../../../types/article.type"
 
 @Component({
   selector: 'article-card',
@@ -9,6 +9,7 @@ import {ArticleType} from "../../../../types/article.type";
 })
 export class ArticleCardComponent implements OnInit {
   @Input() article!: ArticleType
+  @Input() customStyle!: string
   public serverStaticPath: string = environment.serverStaticPath
 
 

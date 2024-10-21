@@ -1,7 +1,8 @@
-<div class="article-item">
-  <div class="article-item-image"
-       style="background-image: url({{ serverStaticPath + article.image }})">
-  </div>
+<div class="article-item" [ngClass]="customStyle">
+  <div
+    class="article-item-image"
+    style="background-image: url({{ serverStaticPath + article.image }})"
+  ></div>
   <div class="article-item-title">
     {{ article.title }}
   </div>
@@ -9,5 +10,7 @@
     {{ article.description }}
   </div>
   <div class="article-item-category">{{ article.category }}</div>
-  <a class="read-more">Читать дальше</a>
+  <a class="read-more" [routerLink]="'/article/' + article.url"
+    >Читать дальше</a
+  >
 </div>

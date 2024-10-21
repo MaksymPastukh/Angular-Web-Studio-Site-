@@ -6,45 +6,140 @@
         <div class="articles-applied-filter">
           <span>Дизайн</span>
           <a>
-            <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg
+              width="16"
+              height="17"
+              viewBox="0 0 16 17"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <g clip-path="url(#clip0_14805_613)">
-                <line x1="1.93553" y1="3.15002" x2="13.9563" y2="15.1708" stroke="#709FDC" stroke-linecap="round"/>
-                <line x1="13.9236" y1="3.12984" x2="1.90278" y2="15.1507" stroke="#709FDC" stroke-linecap="round"/>
+                <line
+                  x1="1.93553"
+                  y1="3.15002"
+                  x2="13.9563"
+                  y2="15.1708"
+                  stroke="#709FDC"
+                  stroke-linecap="round"
+                />
+                <line
+                  x1="13.9236"
+                  y1="3.12984"
+                  x2="1.90278"
+                  y2="15.1507"
+                  stroke="#709FDC"
+                  stroke-linecap="round"
+                />
               </g>
               <defs>
                 <clipPath id="clip0_14805_613">
-                  <rect width="16" height="16" fill="white" transform="translate(0 0.5)"/>
+                  <rect
+                    width="16"
+                    height="16"
+                    fill="white"
+                    transform="translate(0 0.5)"
+                  />
                 </clipPath>
               </defs>
             </svg>
           </a>
         </div>
       </div>
-      <div class="articles-sort"  [class.open]="sortingOpen" (click)="toggleSorting()">
+      <div
+        class="articles-sort"
+        [class.open]="sortingOpen"
+        (click)="toggleSorting()"
+      >
         <div class="articles-sort-head">
           Фильтр
-          <svg *ngIf="!sortingOpen" width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg
+            *ngIf="!sortingOpen"
+            width="20"
+            height="21"
+            viewBox="0 0 20 21"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <path
               d="M10 14.5C9.41668 14.5 8.83335 14.275 8.39168 13.8334L2.95835 8.40003C2.71668 8.15837 2.71668 7.75837 2.95835 7.5167C3.20002 7.27503 3.60002 7.27503 3.84168 7.5167L9.27502 12.95C9.67502 13.35 10.325 13.35 10.725 12.95L16.1583 7.5167C16.4 7.27503 16.8 7.27503 17.0417 7.5167C17.2833 7.75837 17.2833 8.15837 17.0417 8.40003L11.6083 13.8334C11.1667 14.275 10.5833 14.5 10 14.5Z"
-              fill="#071739"/>
+              fill="#071739"
+            />
           </svg>
-          <svg *ngIf="sortingOpen" width="27" height="20" viewBox="0 0 27 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M13.5 5.99997C14.2875 5.99997 15.075 6.22497 15.6713 6.66663L23.0063 12.1C23.3325 12.3416 23.3325 12.7416 23.0063 12.9833C22.68 13.225 22.14 13.225 21.8138 12.9833L14.4788 7.54997C13.9388 7.14997 13.0613 7.14997 12.5213 7.54997L5.18629 12.9833C4.86004 13.225 4.32004 13.225 3.99379 12.9833C3.66754 12.7416 3.66754 12.3416 3.99379 12.1L11.3288 6.66663C11.925 6.22497 12.7125 5.99997 13.5 5.99997Z" fill="#071739" />
+          <svg
+            *ngIf="sortingOpen"
+            width="27"
+            height="20"
+            viewBox="0 0 27 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M13.5 5.99997C14.2875 5.99997 15.075 6.22497 15.6713 6.66663L23.0063 12.1C23.3325 12.3416 23.3325 12.7416 23.0063 12.9833C22.68 13.225 22.14 13.225 21.8138 12.9833L14.4788 7.54997C13.9388 7.14997 13.0613 7.14997 12.5213 7.54997L5.18629 12.9833C4.86004 13.225 4.32004 13.225 3.99379 12.9833C3.66754 12.7416 3.66754 12.3416 3.99379 12.1L11.3288 6.66663C11.925 6.22497 12.7125 5.99997 13.5 5.99997Z"
+              fill="#071739"
+            />
           </svg>
         </div>
         <div class="articles-sort-body">
           <div class="articles-sort-item" *ngFor="let category of categorySort">
-            <span>{{category.name}}</span>
-            <svg width="12" height="11" viewBox="0 0 12 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M11.12 4.904H6.656V0.511999H5.144V4.904H0.68V6.32H5.144V10.688H6.656V6.32H11.12V4.904Z" fill="#BEBEBE"/>
+            <span>{{ category.name }}</span>
+            <svg
+              width="12"
+              height="11"
+              viewBox="0 0 12 11"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M11.12 4.904H6.656V0.511999H5.144V4.904H0.68V6.32H5.144V10.688H6.656V6.32H11.12V4.904Z"
+                fill="#BEBEBE"
+              />
             </svg>
           </div>
         </div>
       </div>
     </div>
-    <div class="articles-layout">
+    <div class="articles-layout" *ngIf="articles">
       <div class="articles-card">
-        <article-card [article]="article" *ngFor="let article of articles.items"></article-card>
+        <article-card
+          [article]="article"
+          *ngFor="let article of articles.items"
+        ></article-card>
+      </div>
+    </div>
+
+    <div class="pagination">
+      <div class="pagination-arrows prev">
+        <svg
+          width="20"
+          height="21"
+          viewBox="0 0 20 21"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M10 14.5C9.41668 14.5 8.83335 14.275 8.39168 13.8334L2.95835 8.40003C2.71668 8.15837 2.71668 7.75837 2.95835 7.5167C3.20002 7.27503 3.60002 7.27503 3.84168 7.5167L9.27502 12.95C9.67502 13.35 10.325 13.35 10.725 12.95L16.1583 7.5167C16.4 7.27503 16.8 7.27503 17.0417 7.5167C17.2833 7.75837 17.2833 8.15837 17.0417 8.40003L11.6083 13.8334C11.1667 14.275 10.5833 14.5 10 14.5Z"
+            fill="#071739"
+          />
+        </svg>
+      </div>
+      <div class="pagination-pages">
+        <div class="pagination-page" *ngFor="let page of pages">
+          {{ page + 1 }}
+        </div>
+      </div>
+      <div class="pagination-arrows next">
+        <svg
+          width="20"
+          height="21"
+          viewBox="0 0 20 21"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M10 14.5C9.41668 14.5 8.83335 14.275 8.39168 13.8334L2.95835 8.40003C2.71668 8.15837 2.71668 7.75837 2.95835 7.5167C3.20002 7.27503 3.60002 7.27503 3.84168 7.5167L9.27502 12.95C9.67502 13.35 10.325 13.35 10.725 12.95L16.1583 7.5167C16.4 7.27503 16.8 7.27503 17.0417 7.5167C17.2833 7.75837 17.2833 8.15837 17.0417 8.40003L11.6083 13.8334C11.1667 14.275 10.5833 14.5 10 14.5Z"
+            fill="#071739"
+          />
+        </svg>
       </div>
     </div>
   </div>

@@ -1,8 +1,8 @@
-import {Component, HostListener, OnInit} from '@angular/core';
-import {ArticleService} from "../../../shared/services/article.service";
-import {CategoriesType} from "../../../../types/categories.type";
-import {DefaultResponseType} from "../../../../types/default-response.type";
-import {ArticlesType} from "../../../../types/articles.type";
+import { Component, HostListener, OnInit } from '@angular/core'
+import { ArticleService } from "../../../shared/services/article.service"
+import { CategoriesType } from "../../../../types/categories.type"
+import { DefaultResponseType } from "../../../../types/default-response.type"
+import { ArticlesType } from "../../../../types/articles.type"
 
 @Component({
   selector: 'app-article-card',
@@ -14,6 +14,7 @@ export class ArticlesComponent implements OnInit {
   public sortingOpen: boolean = false
   public categorySort!: CategoriesType
   public articles!: ArticlesType
+  public pages: number[] = []
 
   constructor(private articleService: ArticleService) {
   }
@@ -27,6 +28,15 @@ export class ArticlesComponent implements OnInit {
 
         this.articleService.getArticles()
           .subscribe((data: ArticlesType) => {
+            this.pages = []
+
+            for (let index = 0; index <= data.pages; index++) {
+              this.pages.push(index)
+            }
+
+            console.log(this.pages)
+
+
             this.articles = data as ArticlesType
 
           })

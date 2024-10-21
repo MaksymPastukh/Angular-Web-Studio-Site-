@@ -6,7 +6,6 @@
   padding-bottom: 12rem;
 
   .container {
-
     .articles-title {
       @include head-lora-38;
       color: $blue-text-color;
@@ -24,8 +23,8 @@
 
         .articles-applied-filter {
           border: 1px solid $blue-text-color;
-          border-radius: .5rem;
-          padding: .8rem 2rem;
+          border-radius: 0.5rem;
+          padding: 0.8rem 2rem;
           font-size: 1.6rem;
           color: $blue-text-color;
           display: flex;
@@ -37,7 +36,7 @@
             text-decoration: none;
             cursor: pointer;
             display: flex;
-            margin-left: .8rem;
+            margin-left: 0.8rem;
           }
         }
       }
@@ -88,7 +87,6 @@
             background: #b9d5fd;
             border-radius: 5px 5px 0 0;
             padding: 1.2rem 1.6rem 1.2rem 2.3rem;
-
           }
 
           .articles-sort-body {
@@ -112,6 +110,56 @@
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 4rem 2.4rem;
+      }
+    }
+
+    .pagination {
+      margin-top: 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .pagination-pages {
+        margin-right: 4rem;
+        margin-left: 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .pagination-page {
+          padding: 1rem;
+          cursor: pointer;
+          font-size: 2rem;
+          color: #071739;
+          margin-right: 2rem;
+
+          &.active {
+            color: #b9d5fd;
+          }
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+
+      .pagination-arrows {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &.prev {
+          transform: rotate(90deg);
+        }
+
+        &.next {
+          transform: rotate(270deg);
+        }
+
+        &.disabled {
+          opacity: 0.5;
+        }
       }
     }
   }

@@ -1,7 +1,4 @@
-export type ArticleType = {
-  text?: string,
-  comments?: [],
-  commentsCount?: number
+export type ArticleRelate = {
   id: string,
   title: string,
   description: string,
@@ -9,4 +6,4 @@ export type ArticleType = {
   date: string,
   category: string,
   url: string,
-}
+}[]

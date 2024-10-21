@@ -1,7 +1,8 @@
 @import "mixin";
 @import "variables";
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   font-family: "Montserrat", sans-serif;
@@ -16,19 +17,19 @@ html {
     overflow-x: hidden;
   }
   @include respond(tab-port) {
-    font-size: 54%
+    font-size: 54%;
   }
   @include respond(tab-port-s) {
-    font-size: 50%
+    font-size: 50%;
   }
   @include respond(tabs) {
-    font-size: 46%
+    font-size: 46%;
   }
   @include respond(phone) {
-    font-size: 43%
+    font-size: 43%;
   }
   @include respond(big-screen) {
-    font-size: 75%
+    font-size: 75%;
   }
 }
 
@@ -57,39 +58,42 @@ html {
 
 input {
   box-sizing: border-box;
-  border: .2rem solid $blue-text-color;
-  border-radius: .3rem;
+  border: 0.2rem solid $blue-text-color;
+  border-radius: 0.3rem;
   padding: 2rem;
   font: 400 14px / 1.3 "Montserrat", sans-serif;
   color: #a8aba7;
   outline: none;
 }
 
-
 .owl-theme {
   .owl-nav .owl-prev {
     position: absolute;
-    top: calc(50% - .5rem);
+    top: calc(50% - 0.5rem);
     left: 0;
-    background: url("../../assets/images/icon/Previous.svg") no-repeat center / contain transparent;
+    background: url("../../assets/images/icon/Previous.svg") no-repeat center /
+      contain transparent;
     width: 28px;
     height: 15px;
 
     &:hover {
-      background: url("../../assets/images/icon/Previous.svg") no-repeat center / contain transparent;
+      background: url("../../assets/images/icon/Previous.svg") no-repeat center /
+        contain transparent;
     }
   }
 
   .owl-nav .owl-next {
     position: absolute;
-    top: calc(50% - .5rem);
+    top: calc(50% - 0.5rem);
     right: 0;
-    background: url("../../assets/images/icon/Next.svg") no-repeat center / contain transparent;
+    background: url("../../assets/images/icon/Next.svg") no-repeat center /
+      contain transparent;
     width: 28px;
     height: 15px;
 
     &:hover {
-      background: url("../../assets/images/icon/Next.svg") no-repeat center / contain transparent;
+      background: url("../../assets/images/icon/Next.svg") no-repeat center /
+        contain transparent;
     }
   }
 }
@@ -104,22 +108,22 @@ input {
     stroke: #fff;
 
     span {
-      background: transparent!important;
+      background: transparent !important;
       border: 1px solid white;
     }
   }
 }
 
-
-.owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
+.owl-theme .owl-dots .owl-dot.active span,
+.owl-theme .owl-dots .owl-dot:hover span {
   background: white !important;
 }
 
 .mat-dialog-container {
-  padding: 0!important;
+  padding: 0 !important;
 }
 
-.slide-left-text span{
+.slide-left-text span {
   color: $blue-text-color;
 }
 
@@ -133,9 +137,9 @@ input {
 }
 .mat-menu-panel {
   margin: 1rem 0 0 1rem;
-  min-width: 82px!important;
-  min-height: 22px!important;
-  background-color: white!important;
+  min-width: 82px !important;
+  min-height: 22px !important;
+  background-color: white !important;
 
   span {
     text-decoration: none;
@@ -143,3 +147,35 @@ input {
   }
 }
 
+.margin {
+  margin-bottom: 6rem;
+}
+
+.article-main-text {
+  h3 {
+    font-size: 2rem;
+    color: $blue-text-color;
+    margin-bottom: 2rem;
+  }
+
+  p {
+    font: 400 14px / 1.3 "Montserrat", sans-serif;
+    color: $darkBlue-text-color;
+    margin-bottom: 2rem;
+
+    &:first-child {
+      margin-bottom: 4rem;
+    }
+
+    &:last-child {
+      margin-bottom: 4rem;
+    }
+  }
+
+  ul {
+    li {
+      font: 400 14px / 1.3 "Montserrat", sans-serif;
+      color: $darkBlue-text-color;
+    }
+  }
+}
