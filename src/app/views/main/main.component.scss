@@ -20,13 +20,13 @@
         left: 0;
         background-color: #b9d5fd;
         clip-path: circle(83.9% at 14% 11%);
-        width: 77.2rem;
+        width: 73.2rem;
         height: 50rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
-        padding-left: 10rem;
+        padding-left: 17rem;
 
         .slide-left-title {
           font: 600 12px / 1.3 "Montserrat", sans-serif;
@@ -47,23 +47,18 @@
           font: 400 24px / 1.3 "Montserrat", sans-serif;
           color: #fff;
           margin-bottom: 5rem;
-
         }
 
         .slide-left-button {
-
           button.button {
             width: 16.3rem;
             font: 400 16px "Montserrat", sans-serif;
             color: #fff;
           }
         }
-
       }
 
-
       .slide-right {
-
         img {
           width: 750px;
           height: 500px;
@@ -190,7 +185,6 @@
           width: 700px;
 
           .aboutUs-advantages-item {
-
             display: flex;
             align-items: center;
             height: 9rem;
@@ -198,7 +192,8 @@
             .advantages-number {
               width: 15rem;
               text-align: center;
-              background: url("../../../assets/images/agvenges-svg.svg") no-repeat center / contain;
+              background: url("../../../assets/images/agvenges-svg.svg")
+                no-repeat center / contain;
               color: $blue-text-color;
               font: 500 5rem "Lora", sans-serif;
               padding-bottom: 1.4rem;
@@ -227,8 +222,6 @@
   margin-bottom: 12rem;
 
   .container {
-
-
     .popular-title {
       @include head-lora-38;
       color: $blue-text-color;
@@ -240,8 +233,6 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-
-
     }
   }
 }
@@ -258,7 +249,6 @@
     }
 
     .reviews-carousel {
-
       position: relative;
 
       .reviews-item {
@@ -299,7 +289,7 @@
         display: flex;
 
         a {
-          top: calc(50% - .5rem);
+          top: calc(50% - 0.5rem);
           display: flex;
           position: absolute;
           cursor: pointer;
@@ -353,7 +343,6 @@
           color: #071739;
         }
       }
-
 
       .contact-phone {
         margin-bottom: 2rem;
@@ -409,5 +398,3 @@
     }
   }
 }
-
-

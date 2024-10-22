@@ -9,12 +9,7 @@ header.header {
     align-items: center;
     justify-content: space-between;
 
-    .logo {
-      margin-right: 10rem;
-    }
-
     .header-menu {
-      margin-right: 25.7rem;
       nav ul {
         margin: 0;
         padding: 0;
@@ -43,9 +38,6 @@ header.header {
             }
           }
         }
-
-
-
       }
     }
 
@@ -67,15 +59,11 @@ header.header {
           span {
             font-size: $text-size;
             color: $darkBlue-text-color;
-            margin-left: .7rem;
+            margin-left: 0.7rem;
             cursor: pointer;
           }
         }
       }
-
-
-
-
     }
   }
 }

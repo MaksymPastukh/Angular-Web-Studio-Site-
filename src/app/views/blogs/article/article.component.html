@@ -1,4 +1,4 @@
-<div class="article">
+<div class="article" *ngIf="article">
   <div class="container">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
@@ -105,19 +105,37 @@
           </div>
         </div>
         <div class="article-comment">
-          <div class="article-comment-title">Комментарии к статье</div>
-          <div class="article-comment-form">
+          <div
+            class="article-comment-form"
+            [formGroup]="formComment"
+            *ngIf="isLogged"
+          >
+            <div class="article-comment-title">Комментарии к статье</div>
             <textarea
+              formControlName="text"
               id="comment"
               name="comment"
               rows="5"
               cols="40"
               placeholder="Напишите Ваш комментарий к статье..."
             ></textarea>
-            <button class="button">Опубликовать комментарий</button>
+            <button
+              class="button"
+              [disabled]="!formComment.value.text"
+              (click)="doComment(article.id)"
+            >
+              Опубликовать комментарий
+            </button>
+          </div>
+          <div class="article-comment-logged" *ngIf="!isLogged">
+            Чтобы оставлять комментарии, <a routerLink="/login">войдите</a> или
+            <a routerLink="/signup">зарегистрируйтесь</a>.
           </div>
           <div class="article-comment-items">
-            <div class="article-comment-item">
+            <div
+              class="article-comment-item"
+              *ngFor="let comment of displayComments"
+            >
               <div class="commentator">
                 <div class="commentator-images">
                   <svg
@@ -156,18 +174,18 @@
                   </svg>
                 </div>
                 <div class="commentator-info">
-                  <div class="commentator-name">Амелия</div>
-                  <div class="commentator-date">20.01.2023 23:00</div>
+                  <div class="commentator-name">{{ comment.user.name }}</div>
+                  <div class="commentator-date">
+                    {{ comment.date | date : "dd.MM.yyyy HH:mm" }}
+                  </div>
                 </div>
               </div>
               <div class="comment-text">
-                Статья супер, спасибо! Взяла на заметку очень многое для себя и
-                своей фирмы по разработке пользовательского интерфейса. Хотелось
-                бы послушать мнение других тоже!
+                {{ comment.text }}
               </div>
               <div class="comment-reactions">
                 <div class="like">
-                  <span>51</span>
+                  <span>{{ comment.likesCount }}</span>
                   <svg
                     width="24"
                     height="24"
@@ -191,7 +209,7 @@
                   </svg>
                 </div>
                 <div class="dislike">
-                  <span>2</span>
+                  <span>{{ comment.dislikesCount }}</span>
                   <svg
                     width="24"
                     height="24"
@@ -214,8 +232,80 @@
                     />
                   </svg>
                 </div>
-                <div class="warning"></div>
+                <div class="warning">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
+                      stroke="#071739"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M12 8V13"
+                      stroke="#071739"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M11.9946 16H12.0036"
+                      stroke="#071739"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
               </div>
+            </div>
+            <div
+              class="visible-comments"
+              *ngIf="isShowComments"
+              (click)="showComments()"
+            >
+              Загрузить ещё комментарии
+              <span
+                ><svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M10 14C9.41668 14 8.83335 13.775 8.39168 13.3334L2.95835 7.90003C2.71668 7.65837 2.71668 7.25837 2.95835 7.0167C3.20002 6.77503 3.60002 6.77503 3.84168 7.0167L9.27502 12.45C9.67502 12.85 10.325 12.85 10.725 12.45L16.1583 7.0167C16.4 6.77503 16.8 6.77503 17.0417 7.0167C17.2833 7.25837 17.2833 7.65837 17.0417 7.90003L11.6083 13.3334C11.1667 13.775 10.5833 14 10 14Z"
+                    fill="#709FDC"
+                  />
+                </svg>
+              </span>
+            </div>
+            <div
+              class="hide-comments"
+              *ngIf="isHideComments"
+              (click)="hideComments()"
+            >
+              Скрыть комментарии
+              <span
+                ><svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M10 14C9.41668 14 8.83335 13.775 8.39168 13.3334L2.95835 7.90003C2.71668 7.65837 2.71668 7.25837 2.95835 7.0167C3.20002 6.77503 3.60002 6.77503 3.84168 7.0167L9.27502 12.45C9.67502 12.85 10.325 12.85 10.725 12.45L16.1583 7.0167C16.4 6.77503 16.8 6.77503 17.0417 7.0167C17.2833 7.25837 17.2833 7.65837 17.0417 7.90003L11.6083 13.3334C11.1667 13.775 10.5833 14 10 14Z"
+                    fill="#709FDC"
+                  />
+                </svg>
+              </span>
             </div>
           </div>
         </div>

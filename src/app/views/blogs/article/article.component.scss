@@ -3,7 +3,7 @@
 
 .article {
   padding-top: 8rem;
-  padding-bottom: 6rem;
+  padding-bottom: 12rem;
 
   .container {
     .breadcrumb {
@@ -84,15 +84,15 @@
         .article-comment {
           margin-top: 12rem;
 
-          .article-comment-title {
-            @include head-lora-38;
-            color: $blue-text-color;
-          }
-
           .article-comment-form {
-            margin-top: 4rem;
             display: flex;
             flex-direction: column;
+
+            .article-comment-title {
+              @include head-lora-38;
+              color: $blue-text-color;
+              margin-bottom: 4rem;
+            }
 
             textarea {
               height: 24.8rem;
@@ -104,6 +104,10 @@
                 font: 400 1.4rem "Montserrat", sans-serif;
                 color: #a8aba7;
               }
+
+              &:focus {
+                outline: none;
+              }
             }
 
             .button {
@@ -112,14 +116,39 @@
             }
           }
 
+          .article-comment-logged {
+            font: 400 1.4rem "Montserrat", sans-serif;
+            color: $darkBlue-text-color;
+
+            a {
+              font: 400 1.4rem "Montserrat", sans-serif;
+              color: $blue-text-color;
+              text-decoration: none;
+            }
+          }
+
           .article-comment-items {
             margin-top: 6rem;
 
             .article-comment-item {
+              margin-bottom: 4rem;
+
+              &:last-child {
+                margin-bottom: 0;
+              }
+
+              .commentator-images {
+                width: 6rem;
+                height: 6rem;
+                background-color: #b9d5fd;
+                border: 2px solid $blue-text-color;
+                border-radius: 50px;
+              }
+
               .commentator {
                 display: flex;
                 align-items: center;
-                margin-bottom: 2.4rem;
+                margin-bottom: 1.5rem;
 
                 .commentator-info {
                   margin-left: 2.6rem;
@@ -177,6 +206,38 @@
                     }
                   }
                 }
+              }
+            }
+
+            .visible-comments {
+              display: flex;
+              align-items: center;
+              margin-top: 6rem;
+              font-size: 2rem;
+              color: $blue-text-color;
+              cursor: pointer;
+
+              span {
+                margin-top: 0.7rem;
+                margin-left: 1rem;
+              }
+            }
+          }
+
+          .hide-comments {
+            display: flex;
+            align-items: center;
+            margin-top: 6rem;
+            font-size: 2rem;
+            color: $blue-text-color;
+            cursor: pointer;
+
+            span {
+              margin-top: 0.7rem;
+              margin-left: 1rem;
+
+              svg {
+                transform: rotate(180deg);
               }
             }
           }
