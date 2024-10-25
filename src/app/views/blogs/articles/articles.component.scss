@@ -13,6 +13,8 @@
     }
 
     .articles-head {
+      margin-bottom: 2rem;
+      height: 4.5rem;
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
@@ -111,6 +113,12 @@
         grid-template-columns: repeat(4, 1fr);
         gap: 4rem 2.4rem;
       }
+
+      .errorFound {
+        margin-top: 5rem;
+        text-align: center;
+        font-size: 2.4rem;
+      }
     }
 
     .pagination {
@@ -159,6 +167,10 @@
 
         &.disabled {
           opacity: 0.5;
+
+          path {
+            fill: #63666c;
+          }
         }
       }
     }

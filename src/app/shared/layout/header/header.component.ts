@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {AuthService} from "../../../core/auth/auth.service";
-import {UserType} from "../../../../types/auth-types/user.type";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {DefaultResponseType} from "../../../../types/default-response.type";
+import { AfterViewInit, Component, OnInit } from '@angular/core'
+import { MatSnackBar } from "@angular/material/snack-bar"
+import { ActivatedRoute, Router } from '@angular/router'
+import { UserType } from "../../../../types/auth-types/user.type"
+import { DefaultResponseType } from "../../../../types/default-response.type"
+import { AuthService } from "../../../core/auth/auth.service"
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,10 @@ export class HeaderComponent implements OnInit {
   public isLogged: boolean = false
   public userInfo!: UserType
 
-  constructor(private authService: AuthService, private _snackBar: MatSnackBar) {
+  constructor(private authService: AuthService,
+    private _snackBar: MatSnackBar,
+    private route: ActivatedRoute,
+    private router: Router) {
     this.isLogged = this.authService.getIsLoggedIn()
   }
 
@@ -26,7 +30,7 @@ export class HeaderComponent implements OnInit {
       this.userInfo = user
     })
 
-    if(this.isLogged) {
+    if (this.isLogged) {
       this.authService.user()
         .subscribe((data: UserType | DefaultResponseType) => {
           this.userInfo = data as UserType

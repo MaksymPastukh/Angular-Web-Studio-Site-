@@ -3,10 +3,14 @@
     <div class="articles-title">Блог</div>
     <div class="articles-head">
       <div class="articles-applied-filters">
-        <div class="articles-applied-filter">
-          <span>Дизайн</span>
+        <div
+          class="articles-applied-filter"
+          *ngFor="let item of appliedFilters"
+        >
+          <span>{{ item.name }}</span>
           <a>
             <svg
+              (click)="removeAppliedFilters(item)"
               width="16"
               height="17"
               viewBox="0 0 16 17"
@@ -80,9 +84,19 @@
           </svg>
         </div>
         <div class="articles-sort-body">
-          <div class="articles-sort-item" *ngFor="let category of categorySort">
+          <div
+            class="articles-sort-item"
+            *ngFor="let category of categorySort"
+            [class.active]="
+              this.activeParams.categories
+                ? this.activeParams.categories.includes(category.url)
+                : false
+            "
+            (click)="sortCategory(category.url)"
+          >
             <span>{{ category.name }}</span>
             <svg
+              *ngIf="!this.activeParams.categories?.includes(category.url)"
               width="12"
               height="11"
               viewBox="0 0 12 11"
@@ -93,6 +107,16 @@
                 d="M11.12 4.904H6.656V0.511999H5.144V4.904H0.68V6.32H5.144V10.688H6.656V6.32H11.12V4.904Z"
                 fill="#BEBEBE"
               />
+            </svg>
+            <svg
+              *ngIf="this.activeParams.categories?.includes(category.url)"
+              width="10"
+              height="2"
+              viewBox="0 0 12 2"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect width="10" height="2" fill="#313131" />
             </svg>
           </div>
         </div>
@@ -105,39 +129,65 @@
           *ngFor="let article of articles.items"
         ></article-card>
       </div>
+      <div class="errorFound" *ngIf="articles.items.length === 0">
+        Статьи не найдены. Попробуйте изменить фильтры поиска...
+      </div>
     </div>
 
-    <div class="pagination">
-      <div class="pagination-arrows prev">
+    <div class="pagination" *ngIf="pages.length > 1">
+      <div
+        class="pagination-arrows prev"
+        [class.disabled]="
+          this.activeParams.page ? this.activeParams.page === 1 : true
+        "
+        (click)="openPrevPage()"
+      >
         <svg
-          width="20"
-          height="21"
+          width="25"
+          height="25"
           viewBox="0 0 20 21"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
             d="M10 14.5C9.41668 14.5 8.83335 14.275 8.39168 13.8334L2.95835 8.40003C2.71668 8.15837 2.71668 7.75837 2.95835 7.5167C3.20002 7.27503 3.60002 7.27503 3.84168 7.5167L9.27502 12.95C9.67502 13.35 10.325 13.35 10.725 12.95L16.1583 7.5167C16.4 7.27503 16.8 7.27503 17.0417 7.5167C17.2833 7.75837 17.2833 8.15837 17.0417 8.40003L11.6083 13.8334C11.1667 14.275 10.5833 14.5 10 14.5Z"
-            fill="#071739"
+            fill="#b9d5fd"
           />
         </svg>
       </div>
       <div class="pagination-pages">
-        <div class="pagination-page" *ngFor="let page of pages">
-          {{ page + 1 }}
+        <div
+          class="pagination-page"
+          *ngFor="let page of pages"
+          (click)="openPage(page)"
+          [class.active]="
+            this.activeParams.page
+              ? this.activeParams.page === page
+              : page === 1
+          "
+        >
+          {{ page }}
         </div>
       </div>
-      <div class="pagination-arrows next">
+      <div
+        class="pagination-arrows next"
+        [class.disabled]="
+          this.activeParams.page
+            ? this.activeParams.page === pages.length
+            : false
+        "
+        (click)="openNextPage()"
+      >
         <svg
-          width="20"
-          height="21"
+          width="25"
+          height="25"
           viewBox="0 0 20 21"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
             d="M10 14.5C9.41668 14.5 8.83335 14.275 8.39168 13.8334L2.95835 8.40003C2.71668 8.15837 2.71668 7.75837 2.95835 7.5167C3.20002 7.27503 3.60002 7.27503 3.84168 7.5167L9.27502 12.95C9.67502 13.35 10.325 13.35 10.725 12.95L16.1583 7.5167C16.4 7.27503 16.8 7.27503 17.0417 7.5167C17.2833 7.75837 17.2833 8.15837 17.0417 8.40003L11.6083 13.8334C11.1667 14.275 10.5833 14.5 10 14.5Z"
-            fill="#071739"
+            fill="#b9d5fd"
           />
         </svg>
       </div>
