@@ -68,6 +68,7 @@ export class ArticleComponent implements OnInit {
               this.isShowAllComments = true
             }
             this.getComments(this.article.id)
+
           }
         })
 
@@ -87,13 +88,18 @@ export class ArticleComponent implements OnInit {
     this.commentService.getComment(params)
       .subscribe((data: GetComments | DefaultResponseType) => {
         this.comments = data as GetComments
-        this.displayComments = this.comments.comments.slice(0, 3)
+        if (this.isShowComments) {
+          this.displayComments = this.comments.comments
+        } else {
+          this.displayComments = this.comments.comments.slice(0, 3)
+        }
 
       })
   }
 
 
   getAllComments(articleId: string) {
+    this.isShowComments = true
     const params: GetParamComments = {
       offset: this.comments.comments.length,
       article: articleId,
@@ -148,8 +154,7 @@ export class ArticleComponent implements OnInit {
         },
         error: (errorResponse: HttpErrorResponse) => {
           if (errorResponse.error && errorResponse.error.message) {
-            const errorMessage = errorResponse.error?.message || 'Ошибка при отправке'
-            this._snackBar.open(errorMessage)
+            this._snackBar.open('Жалоба уже отправлена')
           }
         }
       })
