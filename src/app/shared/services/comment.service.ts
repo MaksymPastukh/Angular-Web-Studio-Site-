@@ -4,6 +4,7 @@ import { Observable } from "rxjs"
 import { doComment } from 'src/types/do-comment.type'
 import { GetComments } from 'src/types/get-comments.type'
 import { GetParamComments } from 'src/types/get-param-comments.type'
+import { likeAndDislike } from 'src/types/likeAndDislike.type'
 import { environment } from "../../../environments/environment"
 import { DefaultResponseType } from "../../../types/default-response.type"
 
@@ -22,6 +23,10 @@ export class CommentService {
 
   public doComment(params: doComment): Observable<DefaultResponseType> {
     return this.http.post<DefaultResponseType>(environment.api + 'comments', params)
+  }
+
+  public likeAndDislike(action: likeAndDislike, idArticle: string): Observable<DefaultResponseType> {
+    return this.http.post<DefaultResponseType>(environment.api + 'comments/' + idArticle + '/apply-action', action)
   }
 
 }

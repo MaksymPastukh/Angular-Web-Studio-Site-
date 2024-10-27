@@ -132,6 +132,9 @@
             <a routerLink="/signup">зарегистрируйтесь</a>.
           </div>
           <div class="article-comment-items">
+            <div class="errorFound" *ngIf="isComments">
+              Комментариев пока нет...
+            </div>
             <div
               class="article-comment-item"
               *ngFor="let comment of displayComments"
@@ -184,7 +187,11 @@
                 {{ comment.text }}
               </div>
               <div class="comment-reactions">
-                <div class="like">
+                <div
+                  class="like"
+                  [class.active]="comment.likesCount > 0"
+                  (click)="likeOrDislike('like', comment.id, article.id)"
+                >
                   <span>{{ comment.likesCount }}</span>
                   <svg
                     width="24"
@@ -208,7 +215,11 @@
                     />
                   </svg>
                 </div>
-                <div class="dislike">
+                <div
+                  class="dislike"
+                  [class.active]="comment.dislikesCount > 0"
+                  (click)="likeOrDislike('dislike', comment.id, article.id)"
+                >
                   <span>{{ comment.dislikesCount }}</span>
                   <svg
                     width="24"
@@ -232,7 +243,11 @@
                     />
                   </svg>
                 </div>
-                <div class="warning">
+                <div
+                  class="warning"
+                  [class.active]="comment.violate"
+                  (click)="likeOrDislike('violate', comment.id, article.id)"
+                >
                   <svg
                     width="24"
                     height="24"
@@ -267,8 +282,8 @@
             </div>
             <div
               class="visible-comments"
-              *ngIf="isShowComments"
-              (click)="showComments()"
+              *ngIf="isShowAllComments && !isHideComments"
+              (click)="getAllComments(article.id)"
             >
               Загрузить ещё комментарии
               <span

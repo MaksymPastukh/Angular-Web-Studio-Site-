@@ -4,53 +4,207 @@
       <div class="auth-title">Регистрация на сайте</div>
       <div class="auth-inputs">
         <div class="auth-input">
-          <input type="text" formControlName="name"
-                 [ngStyle]="{'border-color': name?.invalid
-                 && (name?.dirty || name?.touched) ? 'red' : ''}" placeholder="Ваше имя">
-          <div class="errors" *ngIf="name?.invalid && (name?.dirty || name?.touched)">
-            <span class="error" *ngIf="name?.errors?.['required']">*Имя обязательно для заполнения</span>
-            <span class="error" *ngIf="name?.errors?.['pattern']">*Имя - может содержать русские буквы. Каждое новое слово - с большой буквы</span>
+          <input
+            type="text"
+            formControlName="name"
+            [ngStyle]="{
+              'border-color':
+                name?.invalid && (name?.dirty || name?.touched) ? 'red' : ''
+            }"
+            placeholder="Ваше имя"
+          />
+          <div
+            class="errors"
+            *ngIf="name?.invalid && (name?.dirty || name?.touched)"
+          >
+            <span class="error" *ngIf="name?.errors?.['required']"
+              >* Имя обязательно для заполнения</span
+            >
+            <span class="error" *ngIf="name?.errors?.['pattern']"
+              >* Имя - может содержать русские буквы. Каждое новое слово - с
+              большой буквы</span
+            >
           </div>
         </div>
         <div class="auth-input">
-          <input type="text" formControlName="email"
-                 [ngStyle]="{'border-color': email?.invalid
-                 && (email?.dirty || email?.touched) ? 'red' : ''}" placeholder="Электронная почта">
-          <div class="errors" *ngIf="email?.invalid && (email?.dirty || email?.touched)">
-            <span class="error" *ngIf="email?.errors?.['required']">*Email обязателен для заполнения</span>
-            <span class="error" *ngIf="email?.errors?.['email']">*Email должен быть корректным</span>
+          <input
+            type="text"
+            formControlName="email"
+            [ngStyle]="{
+              'border-color':
+                email?.invalid && (email?.dirty || email?.touched) ? 'red' : ''
+            }"
+            placeholder="Электронная почта"
+          />
+          <div
+            class="errors"
+            *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+          >
+            <span class="error" *ngIf="email?.errors?.['required']"
+              >* Email обязателен для заполнения</span
+            >
+            <span class="error" *ngIf="email?.errors?.['email']"
+              >* Email должен быть корректным</span
+            >
           </div>
         </div>
         <div class="auth-input">
-          <input type="password" formControlName="password"
-                 [ngStyle]="{'border-color' : password?.invalid
-                 && (password?.dirty || password?.touched) ? 'red' : ''}" placeholder="Пароль">
-          <div class="errors" *ngIf="password?.invalid && (password?.dirty || password?.touched)">
-            <span class="error" *ngIf="password?.errors?.['required']">*Пароль обязателен для заполнения</span>
-            <span class="error" *ngIf="password?.errors?.['pattern']">*Пароль должен быть не менее 8 символов, содержать как минимум 1 букву в верхнем регистре и как минимум 1 цифру</span>
+          <input
+            type="{{ isPasswordVisible ? 'text' : 'password' }}"
+            formControlName="password"
+            [ngStyle]="{
+              'border-color':
+                password?.invalid && (password?.dirty || password?.touched)
+                  ? 'red'
+                  : ''
+            }"
+            placeholder="Пароль"
+          />
+          <button
+            type="button"
+            (click)="togglePasswordVisibility()"
+            class="toggle-password"
+          >
+            <svg
+              *ngIf="!isPasswordVisible"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="#a8aba7"
+            >
+              <path
+                d="M3 12c1.5-4 6-7 9-7s7.5 3 9 7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                stroke="#a8aba7"
+              />
+              <line
+                x1="4"
+                y1="10"
+                x2="6"
+                y2="8"
+                stroke="#a8aba7"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+              <line
+                x1="8"
+                y1="10"
+                x2="9"
+                y2="7"
+                stroke="#a8aba7"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+              <line
+                x1="12"
+                y1="10"
+                x2="12"
+                y2="6"
+                stroke="#a8aba7"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+              <line
+                x1="16"
+                y1="10"
+                x2="15"
+                y2="7"
+                stroke="#a8aba7"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+              <line
+                x1="20"
+                y1="10"
+                x2="18"
+                y2="8"
+                stroke="#a8aba7"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+            <svg
+              *ngIf="isPasswordVisible"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="#a8aba7"
+            >
+              <path
+                d="M1 12s4.5-7.5 11-7.5S23 12 23 12s-4.5 7.5-11 7.5S1 12 1 12z"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                stroke="#a8aba7"
+              />
+              <circle
+                cx="12"
+                cy="12"
+                r="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                stroke="#a8aba7"
+              />
+            </svg>
+          </button>
+          <div
+            class="errors"
+            *ngIf="password?.invalid && (password?.dirty || password?.touched)"
+          >
+            <span class="error" *ngIf="password?.errors?.['required']"
+              >* Пароль обязателен для заполнения</span
+            >
+            <span class="error" *ngIf="password?.errors?.['pattern']"
+              >* Пароль должен быть не менее 8 символов. Одну букву в верхнем
+              регистре и минимум 1 цифру</span
+            >
           </div>
         </div>
         <div class="auth-checkbox">
-          <input type="checkbox" formControlName="agree"
-                 id="remember" class="signup-checkbox">
+          <input
+            type="checkbox"
+            formControlName="agree"
+            id="remember"
+            class="signup-checkbox"
+          />
 
-          <label for="remember">Я принимаю <a href="#">условия пользовательского соглашения</a> и даю <a href="#">согласие
-            на обработку персональных данных.</a></label>
-
+          <label for="remember"
+            >Я принимаю <a href="#">условия пользовательского соглашения</a> и
+            даю
+            <a href="#">согласие на обработку персональных данных.</a></label
+          >
         </div>
         <div *ngIf="agree?.invalid && (agree?.dirty || agree?.touched)">
-          <span class="error" *ngIf="agree?.errors?.['required']">*Поле обязательно для заполнения</span>
+          <span class="error" *ngIf="agree?.errors?.['required']"
+            >*Поле обязательно для заполнения</span
+          >
         </div>
       </div>
       <div class="auth-button">
-        <button class="button"  (click)="signup()" [disabled]="signupForm.invalid">Зарегистрироваться</button>
+        <button
+          class="button"
+          (click)="signup()"
+          [disabled]="signupForm.invalid"
+        >
+          Зарегистрироваться
+        </button>
       </div>
       <div class="auth-link">
         Уже есть аккаунт? <a routerLink="/login">Войдите</a>
       </div>
     </div>
     <div class="page-image">
-      <img src="../../../../assets/images/page-images/signup-img.png" alt="Signup img">
+      <img
+        src="../../../../assets/images/page-images/signup-img.png"
+        alt="Signup img"
+      />
     </div>
   </div>
 </section>

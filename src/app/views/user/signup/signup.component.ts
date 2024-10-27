@@ -1,19 +1,20 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, Validators} from "@angular/forms";
-import {AuthService} from "../../../core/auth/auth.service";
-import {SignupType} from "../../../../types/auth-types/signup.type";
-import {LoginResponseType} from "../../../../types/auth-types/login-response.type";
-import {DefaultResponseType} from "../../../../types/default-response.type";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {Router} from "@angular/router";
-import {HttpErrorResponse} from "@angular/common/http";
+import { HttpErrorResponse } from "@angular/common/http"
+import { Component } from '@angular/core'
+import { FormBuilder, Validators } from "@angular/forms"
+import { MatSnackBar } from "@angular/material/snack-bar"
+import { Router } from "@angular/router"
+import { LoginResponseType } from "../../../../types/auth-types/login-response.type"
+import { SignupType } from "../../../../types/auth-types/signup.type"
+import { DefaultResponseType } from "../../../../types/default-response.type"
+import { AuthService } from "../../../core/auth/auth.service"
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent {
+  public isPasswordVisible = false
 
   public signupForm = this.fb.group({
     name: ['', [Validators.required, Validators.pattern('^[А-Я][а-я]+s*$')]],
@@ -39,13 +40,14 @@ export class SignupComponent implements OnInit {
   }
 
   constructor(private fb: FormBuilder,
-              private authService: AuthService,
-              private _snackBar: MatSnackBar,
-              private router: Router,
+    private authService: AuthService,
+    private _snackBar: MatSnackBar,
+    private router: Router,
   ) {
   }
 
-  ngOnInit(): void {
+  togglePasswordVisibility() {
+    this.isPasswordVisible = !this.isPasswordVisible
   }
 
   signup(): void {

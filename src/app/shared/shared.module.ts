@@ -4,13 +4,14 @@ import { PopupComponent } from "./components/popup/popup.component"
 import { ArticleCardComponent } from "./components/article-card/article-card.component"
 import { ReactiveFormsModule } from "@angular/forms"
 import { RouterModule } from '@angular/router'
+import { PhoneMaskDirective } from './utils/phone-mask.directive'
 
 
 @NgModule({
   declarations: [
     PopupComponent,
-    ArticleCardComponent
-
+    ArticleCardComponent,
+    PhoneMaskDirective,
   ],
   imports: [
     CommonModule,
@@ -19,7 +20,8 @@ import { RouterModule } from '@angular/router'
   ],
   exports: [
     PopupComponent,
-    ArticleCardComponent
+    ArticleCardComponent,
+    PhoneMaskDirective,
   ]
 })
 export class SharedModule {

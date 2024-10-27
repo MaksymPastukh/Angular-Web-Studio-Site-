@@ -1,20 +1,20 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, Validators} from "@angular/forms";
-import {AuthService} from "../../../core/auth/auth.service";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {Router} from "@angular/router";
-import {LoginType} from "../../../../types/auth-types/login.type";
-import {LoginResponseType} from "../../../../types/auth-types/login-response.type";
-import {DefaultResponseType} from "../../../../types/default-response.type";
-import {HttpErrorResponse} from "@angular/common/http";
-import {UserType} from "../../../../types/auth-types/user.type";
+import { Component } from '@angular/core'
+import { FormBuilder, Validators } from "@angular/forms"
+import { AuthService } from "../../../core/auth/auth.service"
+import { MatSnackBar } from "@angular/material/snack-bar"
+import { Router } from "@angular/router"
+import { LoginType } from "../../../../types/auth-types/login.type"
+import { LoginResponseType } from "../../../../types/auth-types/login-response.type"
+import { DefaultResponseType } from "../../../../types/default-response.type"
+import { HttpErrorResponse } from "@angular/common/http"
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
+  public isPasswordVisible = false
   public isLogged: boolean = false
 
   public loginForm = this.fb.group({
@@ -36,14 +36,15 @@ export class LoginComponent implements OnInit {
   }
 
   constructor(private fb: FormBuilder,
-              private authService: AuthService,
-              private _snackBar: MatSnackBar,
-              private router: Router,) {
+    private authService: AuthService,
+    private _snackBar: MatSnackBar,
+    private router: Router,) {
     this.isLogged = this.authService.getIsLoggedIn()
 
   }
 
-  ngOnInit(): void {
+  togglePasswordVisibility() {
+    this.isPasswordVisible = !this.isPasswordVisible
   }
 
   login() {

@@ -1,14 +1,14 @@
-import {Component, Input, OnInit} from '@angular/core'
-import {FormBuilder, Validators} from '@angular/forms'
-import {MatDialogRef} from "@angular/material/dialog"
-import {FormTypes} from 'src/types/formTypes.type'
-import {RequestsType} from 'src/types/requests.type'
-import {PopupService} from '../../services/popup.service'
-import {ServiceTypes} from 'src/types/serviceTypes.type'
-import {MainServicesType} from 'src/types/main-services.type'
-import {DefaultResponseType} from 'src/types/default-response.type'
-import {MatSnackBar} from '@angular/material/snack-bar'
-import {HttpErrorResponse} from '@angular/common/http'
+import { HttpErrorResponse } from '@angular/common/http'
+import { Component, Input, OnInit } from '@angular/core'
+import { FormBuilder, Validators } from '@angular/forms'
+import { MatDialogRef } from "@angular/material/dialog"
+import { MatSnackBar } from '@angular/material/snack-bar'
+import { DefaultResponseType } from 'src/types/default-response.type'
+import { FormTypes } from 'src/types/formTypes.type'
+import { MainServicesType } from 'src/types/main-services.type'
+import { RequestsType } from 'src/types/requests.type'
+import { ServiceTypes } from 'src/types/serviceTypes.type'
+import { PopupService } from '../../services/popup.service'
 
 @Component({
   selector: 'app-popup',
@@ -49,7 +49,7 @@ export class PopupComponent implements OnInit {
 
   public serviceForm = this.fb.group({
     service: ['', Validators.required],
-    name: ['', Validators.required],
+    name: ['', [Validators.required]],
     phone: ['', Validators.required],
   })
 
@@ -59,19 +59,19 @@ export class PopupComponent implements OnInit {
   })
 
   get nameConsultationForm() {
-    return this.consultationForm.get('name');
+    return this.consultationForm.get('name')
   }
 
   get phoneConsultationForm() {
-    return this.consultationForm.get('phone');
+    return this.consultationForm.get('phone')
   }
 
   get nameServiceForm() {
-    return this.serviceForm.get('name');
+    return this.serviceForm.get('name')
   }
 
   get phoneServiceForm() {
-    return this.serviceForm.get('phone');
+    return this.serviceForm.get('phone')
   }
 
 
@@ -85,12 +85,12 @@ export class PopupComponent implements OnInit {
   ngOnInit(): void {
     this.isServices = this.popupService.isServices
     this.isConsultation = this.popupService.isConsultation
-    const service =  this.popupService.service
+    const service = this.popupService.service
     const selected = this.services.find(item => item.service === service)
     if (selected) {
-      this.serviceForm.patchValue({service: selected.service})
+      this.serviceForm.patchValue({ service: selected.service })
     } else {
-      this.serviceForm.patchValue({service: ServiceTypes.advertising})
+      this.serviceForm.patchValue({ service: ServiceTypes.advertising })
     }
 
     this.dialogService?.backdropClick()

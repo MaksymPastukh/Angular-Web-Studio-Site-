@@ -8,6 +8,7 @@ import { CategoriesType } from "../../../../types/categories.type"
 import { DefaultResponseType } from "../../../../types/default-response.type"
 import { ArticleService } from "../../../shared/services/article.service"
 
+
 @Component({
   selector: 'app-article-card',
   templateUrl: './articles.component.html',
@@ -139,6 +140,8 @@ export class ArticlesComponent implements OnInit {
   toggleSorting(): void {
     this.sortingOpen = !this.sortingOpen
   }
+
+
 
   @HostListener('document:click', ['$event'])
   click(event: Event): void {

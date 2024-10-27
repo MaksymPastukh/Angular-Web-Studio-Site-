@@ -152,6 +152,11 @@ input {
 }
 
 .article-main-text {
+  h1 {
+    font-size: 2rem;
+    color: $blue-text-color;
+    margin-bottom: 2rem;
+  }
   h3 {
     font-size: 2rem;
     color: $blue-text-color;

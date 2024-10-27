@@ -11,27 +11,35 @@
   }
 
   .auth-inputs {
-
     margin-bottom: 4rem;
 
     .auth-input {
       position: relative;
 
-      margin-top: .5rem;
+      margin-top: 0.5rem;
+
+      .toggle-password {
+        position: absolute;
+        top: 1.6rem;
+        left: 38rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 12;
+      }
 
       .errors {
         position: absolute;
-        top: .6rem;
+        top: 0.6rem;
         left: 17rem;
-        max-width: 27.2rem !important;
+        max-width: 24.2rem !important;
         .error {
           color: red;
           font-size: 1.1rem;
-          margin-left: 0!important;
+          margin-left: 0 !important;
           text-align: start;
         }
       }
-
 
       input {
         width: 42.2rem;
@@ -40,7 +48,6 @@
       &:first-child {
         margin-top: 0;
       }
-
     }
 
     div .error {
@@ -55,16 +62,15 @@
       width: 42.2rem;
       margin-top: 1rem;
 
-
       input {
         appearance: none;
         -webkit-appearance: none;
-        border: .1rem solid #071739;
+        border: 0.1rem solid #071739;
         border-radius: 3px;
         width: 1.4rem;
-        height:  1.4rem;
+        height: 1.4rem;
         padding: 0;
-        margin: .2rem 0 0 0;
+        margin: 0.2rem 0 0 0;
 
         cursor: pointer;
         position: relative;
@@ -72,14 +78,13 @@
 
         &.signup-checkbox {
           width: 2.7rem;
-          margin: .5rem 0 0 0;
-
+          margin: 0.5rem 0 0 0;
         }
       }
 
       input:checked {
         background-color: white;
-        border: .1rem solid #071739;
+        border: 0.1rem solid #071739;
       }
 
       input:checked::after {
@@ -123,7 +128,7 @@
       cursor: pointer;
       color: $blue-text-color;
       text-decoration: none;
-      margin-left: .7rem;
+      margin-left: 0.7rem;
     }
   }
 }

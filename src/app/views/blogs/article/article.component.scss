@@ -191,15 +191,24 @@
                   display: flex;
                   align-items: flex-end;
                   margin-right: 1.5rem;
+                  cursor: pointer;
                 }
 
                 .dislike {
                   display: flex;
                   align-items: flex-end;
                   margin-right: 1.5rem;
+                  cursor: pointer;
                 }
 
-                &.active {
+                .warning {
+                  cursor: pointer;
+                }
+
+                .active {
+                  span {
+                    color: $blue-text-color;
+                  }
                   svg {
                     path {
                       stroke: $blue-text-color;
@@ -207,6 +216,13 @@
                   }
                 }
               }
+            }
+
+            .errorFound {
+              margin-top: 5rem;
+              text-align: start;
+              font-size: 2.4rem;
+              color: $blue-text-color;
             }
 
             .visible-comments {

@@ -25,10 +25,15 @@
       />
     </svg>
   </div>
-  <div class="service-popup-title" *ngIf="isSuccess">Спасибо за вашу заявку!</div>
-  <div class="service-popup-description" *ngIf="isSuccess">Мы свяжемся с вами при первой же возможности.</div>
-  <div class="service-popup-title" *ngIf="isConsultation">Закажите бесплатную консультацию!</div>
-
+  <div class="service-popup-title" *ngIf="isSuccess">
+    Спасибо за вашу заявку!
+  </div>
+  <div class="service-popup-description" *ngIf="isSuccess">
+    Мы свяжемся с вами при первой же возможности.
+  </div>
+  <div class="service-popup-title" *ngIf="isConsultation">
+    Закажите бесплатную консультацию!
+  </div>
 
   <div class="service-popup-title" *ngIf="isServices">Заявка на услугу</div>
   <div class="service-popup-form" *ngIf="isServices" [formGroup]="serviceForm">
@@ -54,13 +59,22 @@
         }"
         placeholder="Ваше имя"
       />
-      <div *ngIf="nameServiceForm?.invalid && (nameServiceForm?.dirty || nameServiceForm?.touched)">
-        <span class="error" *ngIf="nameServiceForm?.errors?.['required']">*Имя обязательно для заполнения</span>
+      <div
+        class="errors-name-service"
+        *ngIf="
+          nameServiceForm?.invalid &&
+          (nameServiceForm?.dirty || nameServiceForm?.touched)
+        "
+      >
+        <span class="error" *ngIf="nameServiceForm?.errors?.['required']"
+          >* Имя обязательно для заполнения</span
+        >
       </div>
     </div>
     <div class="popup-input">
       <input
         type="text"
+        phoneMask
         formControlName="phone"
         [ngStyle]="{
           'border-color':
@@ -72,39 +86,96 @@
         }"
         placeholder="Ваш номер телефона"
       />
-      <div *ngIf="phoneServiceForm?.invalid && (phoneServiceForm?.dirty || phoneServiceForm?.touched)">
-        <span class="error" *ngIf="phoneServiceForm?.errors?.['required']">*Телефон обязателен для заполнения</span>
+      <div
+        class="errors-phone-service"
+        *ngIf="
+          phoneServiceForm?.invalid &&
+          (phoneServiceForm?.dirty || phoneServiceForm?.touched)
+        "
+      >
+        <span class="error" *ngIf="phoneServiceForm?.errors?.['required']"
+          >* Телефон обязателен для заполнения</span
+        >
       </div>
     </div>
   </div>
-  <div class="service-popup-form" *ngIf="isConsultation" [formGroup]="consultationForm">
+  <div
+    class="service-popup-form"
+    *ngIf="isConsultation"
+    [formGroup]="consultationForm"
+  >
     <div class="popup-input">
-      <input type="text" formControlName="name"
-             [ngStyle]="{'border-color': consultationForm.get('name')?.invalid
-               && (consultationForm.get('name')?.dirty || consultationForm.get('name')?.touched) ? 'red' : ''}"
-             placeholder="Ваше имя">
-      <div *ngIf="nameConsultationForm?.invalid && (nameConsultationForm?.dirty || nameConsultationForm?.touched)">
-        <span class="error" *ngIf="nameConsultationForm?.errors?.['required']">*Имя обязательно для заполнения</span>
+      <input
+        type="text"
+        formControlName="name"
+        [ngStyle]="{
+          'border-color':
+            consultationForm.get('name')?.invalid &&
+            (consultationForm.get('name')?.dirty ||
+              consultationForm.get('name')?.touched)
+              ? 'red'
+              : ''
+        }"
+        placeholder="Ваше имя"
+      />
+      <div
+        class="errors-name-consultation"
+        *ngIf="
+          nameConsultationForm?.invalid &&
+          (nameConsultationForm?.dirty || nameConsultationForm?.touched)
+        "
+      >
+        <span class="error" *ngIf="nameConsultationForm?.errors?.['required']"
+          >* Имя обязательно для заполнения</span
+        >
       </div>
     </div>
     <div class="popup-input">
-      <input type="text" formControlName="phone"
-             [ngStyle]="{'border-color' : consultationForm.get('phone')?.invalid
-               && (consultationForm.get('phone')?.dirty || consultationForm.get('phone')?.touched) ? 'red' : ''}"
-             placeholder="Ваш номер телефона">
-      <div *ngIf="phoneConsultationForm?.invalid && (phoneConsultationForm?.dirty || phoneConsultationForm?.touched)">
-        <span class="error"
-              *ngIf="phoneConsultationForm?.errors?.['required']">*Телефон обязателен для заполнения</span>
+      <input
+        type="text"
+        phoneMask
+        formControlName="phone"
+        [ngStyle]="{
+          'border-color':
+            consultationForm.get('phone')?.invalid &&
+            (consultationForm.get('phone')?.dirty ||
+              consultationForm.get('phone')?.touched)
+              ? 'red'
+              : ''
+        }"
+        placeholder="Ваш номер телефона"
+      />
+      <div
+        class="errors-phone-consultation"
+        *ngIf="
+          phoneConsultationForm?.invalid &&
+          (phoneConsultationForm?.dirty || phoneConsultationForm?.touched)
+        "
+      >
+        <span class="error" *ngIf="phoneConsultationForm?.errors?.['required']"
+          >* Телефон обязателен для заполнения</span
+        >
       </div>
     </div>
   </div>
 
-  <button class="button button-okay" *ngIf="isSuccess" (click)="closePopup()">Окей</button>
-  <button class="button" *ngIf="isServices" (click)="leaveRequest()"
-          [disabled]="!serviceForm.valid">Оставить заявку
+  <button class="button button-okay" *ngIf="isSuccess" (click)="closePopup()">
+    Окей
   </button>
-  <button class="button" *ngIf="isConsultation" (click)="consultation()"
-          [disabled]="!consultationForm.valid">Заказать консультацию
+  <button
+    class="button"
+    *ngIf="isServices"
+    (click)="leaveRequest()"
+    [disabled]="!serviceForm.valid"
+  >
+    Оставить заявку
+  </button>
+  <button
+    class="button"
+    *ngIf="isConsultation"
+    (click)="consultation()"
+    [disabled]="!consultationForm.valid"
+  >
+    Заказать консультацию
   </button>
 </div>
-

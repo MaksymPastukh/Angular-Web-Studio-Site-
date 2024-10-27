@@ -36,8 +36,8 @@
       padding: 1.7rem 2rem;
       font: 400 14px / 1.3 "Montserrat", sans-serif;
       color: $blue-text-color;
-      border: .2rem solid $blue-text-color;
-      border-radius: .5rem;
+      border: 0.2rem solid $blue-text-color;
+      border-radius: 0.5rem;
       margin-bottom: 1rem;
       -webkit-appearance: none;
       -moz-appearance: none;
@@ -49,19 +49,11 @@
       }
     }
 
-
-
     .popup-input {
-      margin-bottom: .5rem;
+      margin-bottom: 0.5rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-
-      .error {
-        color: red;
-        font-size: 1.2rem;
-        margin-left: 17rem;
-      }
 
       &:last-child {
         margin-bottom: 0;
@@ -70,6 +62,48 @@
       input {
         width: 42.2rem;
         height: 5.3rem;
+      }
+
+      .errors-name-service {
+        position: absolute;
+        top: 22.6rem;
+        left: 31rem;
+        max-width: 27.2rem !important;
+        .error {
+          color: red;
+          font-size: 1.1rem;
+        }
+      }
+
+      .errors-phone-service {
+        position: absolute;
+        top: 28.6rem;
+        left: 31rem;
+        .error {
+          color: red;
+          font-size: 1.1rem;
+        }
+      }
+    }
+
+    .errors-name-consultation {
+      position: absolute;
+      top: 21rem;
+      left: 31rem;
+      max-width: 27.2rem !important;
+      .error {
+        color: red;
+        font-size: 1.1rem;
+      }
+    }
+
+    .errors-phone-consultation {
+      position: absolute;
+      top: 27rem;
+      left: 31rem;
+      .error {
+        color: red;
+        font-size: 1.1rem;
       }
     }
   }

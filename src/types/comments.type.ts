@@ -4,9 +4,9 @@ export type Comments = {
   date: string,
   likesCount: number,
   dislikesCount: number,
+  violate?: boolean,
   user: {
     id: string
     name: string
   }
-
 }[]
