@@ -1,12 +1,12 @@
-export type Comments = {
+export type Comment = {
   id: string,
   text: string,
   date: string,
   likesCount: number,
   dislikesCount: number,
-  violate?: boolean,
+  isAction?: string,
   user: {
     id: string
     name: string
   }
-}[]
+}

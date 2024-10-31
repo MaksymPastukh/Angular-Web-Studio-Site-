@@ -7,16 +7,11 @@ import { ArticleType } from "../../../../types/article.type"
   templateUrl: './article-card.component.html',
   styleUrls: ['./article-card.component.scss']
 })
-export class ArticleCardComponent implements OnInit {
+export class ArticleCardComponent {
   @Input() article!: ArticleType
   @Input() customStyle!: string
   public serverStaticPath: string = environment.serverStaticPath
 
-
   constructor() {
   }
-
-  ngOnInit(): void {
-  }
-
 }

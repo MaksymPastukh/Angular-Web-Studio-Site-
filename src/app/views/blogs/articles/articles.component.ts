@@ -1,6 +1,6 @@
-import { Component, HostListener, OnInit } from '@angular/core'
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core'
 import { ActivatedRoute, Params, Router } from '@angular/router'
-import { debounceTime } from 'rxjs'
+import { debounceTime, Subscription } from 'rxjs'
 import { ActivateParamsType } from 'src/types/activate-params.type'
 import { AppliedFilters } from 'src/types/applied-filters.type'
 import { ArticlesType } from "../../../../types/articles.type"
@@ -14,7 +14,7 @@ import { ArticleService } from "../../../shared/services/article.service"
   templateUrl: './articles.component.html',
   styleUrls: ['./articles.component.scss']
 })
-export class ArticlesComponent implements OnInit {
+export class ArticlesComponent implements OnInit, OnDestroy {
 
   public sortingOpen: boolean = false
   public categorySort!: CategoriesType
@@ -25,6 +25,9 @@ export class ArticlesComponent implements OnInit {
   public activeParams: ActivateParamsType = {
     categories: []
   }
+  private subscriptionCategories: Subscription | null = null
+  private subscriptionQueryParams: Subscription | null = null
+  private subscriptionArticles: Subscription | null = null
 
 
 
@@ -33,14 +36,14 @@ export class ArticlesComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.articleService.getCategories()
+    this.subscriptionCategories = this.articleService.getCategories()
       .subscribe((category: CategoriesType | DefaultResponseType) => {
         this.categorySort = category as CategoriesType
 
 
         this.category = category as any
 
-        this.activateRoute.queryParams
+        this.subscriptionQueryParams = this.activateRoute.queryParams
           .pipe(
             debounceTime(300)
           )
@@ -71,7 +74,7 @@ export class ArticlesComponent implements OnInit {
               })
             }
 
-            this.articleService.getArticles(activeParams)
+            this.subscriptionArticles = this.articleService.getArticles(activeParams)
               .subscribe((data: ArticlesType) => {
                 this.pages = []
 
@@ -81,9 +84,6 @@ export class ArticlesComponent implements OnInit {
                 this.articles = data as ArticlesType
 
                 if (this.articles.items.length === 0) {
-
-                  console.log(1)
-
                   this.router.navigate(['/articles'])
                 }
               })
@@ -141,8 +141,6 @@ export class ArticlesComponent implements OnInit {
     this.sortingOpen = !this.sortingOpen
   }
 
-
-
   @HostListener('document:click', ['$event'])
   click(event: Event): void {
     if (this.sortingOpen && (event.target as HTMLElement).className.indexOf('articles-sort') === -1) {
@@ -150,4 +148,9 @@ export class ArticlesComponent implements OnInit {
     }
   }
 
+  ngOnDestroy() {
+    this.subscriptionCategories?.unsubscribe()
+    this.subscriptionQueryParams?.unsubscribe()
+    this.subscriptionArticles?.unsubscribe()
+  }
 }

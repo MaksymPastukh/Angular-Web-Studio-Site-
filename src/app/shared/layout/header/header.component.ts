@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
 import { MatSnackBar } from "@angular/material/snack-bar"
-import { ActivatedRoute, Router } from '@angular/router'
+import { Subscription } from 'rxjs'
 import { UserType } from "../../../../types/auth-types/user.type"
 import { DefaultResponseType } from "../../../../types/default-response.type"
 import { AuthService } from "../../../core/auth/auth.service"
@@ -10,28 +10,30 @@ import { AuthService } from "../../../core/auth/auth.service"
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   public isLogged: boolean = false
   public userInfo!: UserType
+  private subscriptionLogged: Subscription | null = null
+  private subscriptionUserInfo: Subscription | null = null
+  private subscriptionUser: Subscription | null = null
+  private subscriptionLogout: Subscription | null = null
 
   constructor(private authService: AuthService,
-    private _snackBar: MatSnackBar,
-    private route: ActivatedRoute,
-    private router: Router) {
+    private _snackBar: MatSnackBar) {
     this.isLogged = this.authService.getIsLoggedIn()
   }
 
   ngOnInit(): void {
-    this.authService.isLogged$.subscribe((isLogged: boolean) => {
+    this.subscriptionLogged = this.authService.isLogged$.subscribe((isLogged: boolean) => {
       this.isLogged = isLogged
     })
 
-    this.authService.userInfo$.subscribe((user: UserType) => {
+    this.subscriptionUserInfo = this.authService.userInfo$.subscribe((user: UserType) => {
       this.userInfo = user
     })
 
     if (this.isLogged) {
-      this.authService.user()
+      this.subscriptionUser = this.authService.user()
         .subscribe((data: UserType | DefaultResponseType) => {
           this.userInfo = data as UserType
         })
@@ -39,7 +41,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(): void {
-    this.authService.logout()
+    this.subscriptionLogout = this.authService.logout()
       .subscribe({
         next: (): void => {
           this.doLogout()
@@ -54,5 +56,12 @@ export class HeaderComponent implements OnInit {
     this.authService.removeTokens()
     this.authService.userId = null
     this._snackBar.open(`Вы успешно вышли из системы`)
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptionLogged?.unsubscribe()
+    this.subscriptionUserInfo?.unsubscribe()
+    this.subscriptionUser?.unsubscribe()
+    this.subscriptionLogout?.unsubscribe()
   }
 }

@@ -1,8 +1,9 @@
 import { HttpErrorResponse } from "@angular/common/http"
-import { Component } from '@angular/core'
+import { Component, OnDestroy } from '@angular/core'
 import { FormBuilder, Validators } from "@angular/forms"
 import { MatSnackBar } from "@angular/material/snack-bar"
 import { Router } from "@angular/router"
+import { Subscription } from 'rxjs'
 import { LoginResponseType } from "../../../../types/auth-types/login-response.type"
 import { SignupType } from "../../../../types/auth-types/signup.type"
 import { DefaultResponseType } from "../../../../types/default-response.type"
@@ -13,8 +14,9 @@ import { AuthService } from "../../../core/auth/auth.service"
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
-export class SignupComponent {
+export class SignupComponent implements OnDestroy {
   public isPasswordVisible = false
+  private subscription: Subscription | null = null
 
   public signupForm = this.fb.group({
     name: ['', [Validators.required, Validators.pattern('^[А-Я][а-я]+s*$')]],
@@ -63,7 +65,7 @@ export class SignupComponent {
         password: this.signupForm.value.password,
       }
 
-      this.authService.signup(newObj)
+      this.subscription = this.authService.signup(newObj)
         .subscribe({
           next: (data: LoginResponseType | DefaultResponseType) => {
             let error = null
@@ -96,6 +98,10 @@ export class SignupComponent {
           }
         })
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe()
   }
 
 }

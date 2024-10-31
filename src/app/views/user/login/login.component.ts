@@ -1,21 +1,23 @@
-import { Component } from '@angular/core'
+import { HttpErrorResponse } from "@angular/common/http"
+import { Component, OnDestroy } from '@angular/core'
 import { FormBuilder, Validators } from "@angular/forms"
-import { AuthService } from "../../../core/auth/auth.service"
 import { MatSnackBar } from "@angular/material/snack-bar"
 import { Router } from "@angular/router"
-import { LoginType } from "../../../../types/auth-types/login.type"
+import { Subscription } from 'rxjs'
 import { LoginResponseType } from "../../../../types/auth-types/login-response.type"
+import { LoginType } from "../../../../types/auth-types/login.type"
 import { DefaultResponseType } from "../../../../types/default-response.type"
-import { HttpErrorResponse } from "@angular/common/http"
+import { AuthService } from "../../../core/auth/auth.service"
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy {
   public isPasswordVisible = false
   public isLogged: boolean = false
+  private subscription: Subscription | null = null
 
   public loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -40,7 +42,6 @@ export class LoginComponent {
     private _snackBar: MatSnackBar,
     private router: Router,) {
     this.isLogged = this.authService.getIsLoggedIn()
-
   }
 
   togglePasswordVisibility() {
@@ -52,14 +53,13 @@ export class LoginComponent {
       this.loginForm.value.email &&
       this.loginForm.value.password
     ) {
-
       const newObj: LoginType = {
         email: this.loginForm.value.email,
         password: this.loginForm.value.password,
         rememberMe: !!this.loginForm.value.rememberMe,
       }
 
-      this.authService.login(newObj)
+      this.subscription = this.authService.login(newObj)
         .subscribe({
           next: (data: LoginResponseType | DefaultResponseType) => {
             let error = null
@@ -95,4 +95,7 @@ export class LoginComponent {
     }
   }
 
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe()
+  }
 }

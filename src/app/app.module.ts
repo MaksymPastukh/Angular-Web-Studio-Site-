@@ -30,6 +30,7 @@ import { SharedModule } from "./shared/shared.module"
     ReactiveFormsModule,
     MatSnackBarModule,
     BrowserModule,
+
     CarouselModule,
     SharedModule,
     AppRoutingModule,

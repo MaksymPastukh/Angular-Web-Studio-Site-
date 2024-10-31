@@ -1,4 +1,4 @@
-<div class="article" *ngIf="article">
+<div class="article" *ngIf="article && displayComments">
   <div class="container">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
@@ -177,7 +177,9 @@
                   </svg>
                 </div>
                 <div class="commentator-info">
-                  <div class="commentator-name">{{ comment.user.name }}</div>
+                  <div class="commentator-name">
+                    {{ comment.user.name }}
+                  </div>
                   <div class="commentator-date">
                     {{ comment.date | date : "dd.MM.yyyy HH:mm" }}
                   </div>
@@ -189,8 +191,10 @@
               <div class="comment-reactions">
                 <div
                   class="like"
-                  [class.active]="comment.likesCount > 0"
-                  (click)="likeOrDislike('like', comment.id, article.id)"
+                  [class.active]="
+                    comment.likesCount > 0 && comment.isAction === 'like'
+                  "
+                  (click)="likeOrDislike('like', comment.id)"
                 >
                   <span>{{ comment.likesCount }}</span>
                   <svg
@@ -217,8 +221,10 @@
                 </div>
                 <div
                   class="dislike"
-                  [class.active]="comment.dislikesCount > 0"
-                  (click)="likeOrDislike('dislike', comment.id, article.id)"
+                  [class.active]="
+                    comment.dislikesCount > 0 && comment.isAction === 'dislike'
+                  "
+                  (click)="likeOrDislike('dislike', comment.id)"
                 >
                   <span>{{ comment.dislikesCount }}</span>
                   <svg
@@ -245,8 +251,7 @@
                 </div>
                 <div
                   class="warning"
-                  [class.active]="comment.violate"
-                  (click)="likeOrDislike('violate', comment.id, article.id)"
+                  (click)="likeOrDislike('violate', comment.id)"
                 >
                   <svg
                     width="24"

@@ -1,23 +1,22 @@
-import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core'
-import { OwlOptions } from "ngx-owl-carousel-o"
-import { MainSliderType } from "../../../types/main-slider.type"
-import { MainReviewsType } from "../../../types/main-reviews.type"
+import { Component, ElementRef, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core'
 import { MatDialog, MatDialogRef } from "@angular/material/dialog"
-import { ArticleService } from "../../shared/services/article.service"
-import { PopularArticleType } from "../../../types/popular-article.type"
+import { OwlOptions } from "ngx-owl-carousel-o"
+import { Subscription } from 'rxjs'
 import { DefaultResponseType } from "../../../types/default-response.type"
+import { MainReviewsType } from "../../../types/main-reviews.type"
 import { MainServicesType } from "../../../types/main-services.type"
-import { PopupService } from "../../shared/services/popup.service"
-import { FormBuilder } from "@angular/forms"
+import { MainSliderType } from "../../../types/main-slider.type"
+import { PopularArticleType } from "../../../types/popular-article.type"
 import { ServiceTypes } from "../../../types/serviceTypes.type"
-import { MatSnackBar } from "@angular/material/snack-bar"
+import { ArticleService } from "../../shared/services/article.service"
+import { PopupService } from "../../shared/services/popup.service"
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, OnDestroy {
   public mainSlider: MainSliderType = [
     {
       title: 'Предложение месяца',
@@ -79,6 +78,7 @@ export class MainComponent implements OnInit {
       service: ServiceTypes.copyrighting,
     },]
   public popularArticles: PopularArticleType | null = null
+  private subscription: Subscription | null = null
 
 
   customOptions: OwlOptions = {
@@ -145,6 +145,10 @@ export class MainComponent implements OnInit {
   openPopup(service: string, isService: boolean) {
     this.popupService.services(service, isService)
     this.dialogService = this.dialog.open(this.popup)
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe()
   }
 
 }

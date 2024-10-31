@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http"
 import { Injectable } from '@angular/core'
-import { Observable } from "rxjs"
+import { map, Observable } from "rxjs"
+import { ArticleCommentActions } from 'src/types/article-comment-actions.type'
 import { doComment } from 'src/types/do-comment.type'
 import { GetComments } from 'src/types/get-comments.type'
 import { GetParamComments } from 'src/types/get-param-comments.type'
@@ -25,8 +26,16 @@ export class CommentService {
     return this.http.post<DefaultResponseType>(environment.api + 'comments', params)
   }
 
-  public likeAndDislike(action: likeAndDislike, idArticle: string): Observable<DefaultResponseType> {
-    return this.http.post<DefaultResponseType>(environment.api + 'comments/' + idArticle + '/apply-action', action)
+  public likeAndDislike(action: likeAndDislike, articleId: string): Observable<DefaultResponseType> {
+    return this.http.post<DefaultResponseType>(environment.api + 'comments/' + articleId + '/apply-action', action)
+  }
+
+  public getActionsComment(articleId: string): Observable<ArticleCommentActions[] | DefaultResponseType> {
+    return this.http.get<ArticleCommentActions[] | DefaultResponseType>(environment.api + 'comments/article-comment-actions?articleId=' + articleId)
+  }
+
+  public getActionCommentator(commentId: string): Observable<ArticleCommentActions[] | DefaultResponseType> {
+    return this.http.get<ArticleCommentActions[] | DefaultResponseType>(environment.api + 'comments/' + commentId + '/actions')
   }
 
 }

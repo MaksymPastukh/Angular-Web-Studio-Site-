@@ -1,8 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http'
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, Input, OnDestroy, OnInit } from '@angular/core'
 import { FormBuilder, Validators } from '@angular/forms'
 import { MatDialogRef } from "@angular/material/dialog"
 import { MatSnackBar } from '@angular/material/snack-bar'
+import { Subscription } from 'rxjs'
 import { DefaultResponseType } from 'src/types/default-response.type'
 import { FormTypes } from 'src/types/formTypes.type'
 import { MainServicesType } from 'src/types/main-services.type'
@@ -15,10 +16,13 @@ import { PopupService } from '../../services/popup.service'
   templateUrl: './popup.component.html',
   styleUrls: ['./popup.component.scss']
 })
-export class PopupComponent implements OnInit {
+export class PopupComponent implements OnInit, OnDestroy {
   public isSuccess: boolean = false
   public isServices: boolean = false
   public isConsultation: boolean = false
+  private subscriptionOrder: Subscription | null = null
+  private subscriptionConsultation: Subscription | null = null
+
   public services: MainServicesType = [
     {
       image: 'services1.png',
@@ -117,7 +121,7 @@ export class PopupComponent implements OnInit {
         type: FormTypes.order
       }
 
-      this.popupService.requestOrder(newParamsObj)
+      this.subscriptionOrder = this.popupService.requestOrder(newParamsObj)
         .subscribe({
           next: (data: DefaultResponseType) => {
             if (data.error) {
@@ -155,7 +159,7 @@ export class PopupComponent implements OnInit {
         type: FormTypes.consultation
       }
 
-      this.popupService.requestOrder(newParamsObj)
+      this.subscriptionConsultation = this.popupService.requestOrder(newParamsObj)
         .subscribe({
           next: (data: DefaultResponseType) => {
             if (data.error) {
@@ -177,5 +181,10 @@ export class PopupComponent implements OnInit {
           }
         })
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptionOrder?.unsubscribe()
+    this.subscriptionConsultation?.unsubscribe()
   }
 }
