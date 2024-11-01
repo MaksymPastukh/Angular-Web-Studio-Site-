@@ -1,12 +1,14 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import {LoginComponent} from "./login/login.component";
-import {SignupComponent} from "./signup/signup.component";
+import { NgModule } from '@angular/core'
+import { RouterModule, Routes } from '@angular/router'
+import { LoginComponent } from "./login/login.component"
+import { SignupComponent } from "./signup/signup.component"
+import { UserAgreementComponent } from './user-agreement/user-agreement.component'
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent},
-  {path: 'signup', component: SignupComponent}
-];
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'agreement', component: UserAgreementComponent },
+]
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

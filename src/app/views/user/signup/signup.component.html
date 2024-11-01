@@ -176,9 +176,14 @@
           />
 
           <label for="remember"
-            >Я принимаю <a href="#">условия пользовательского соглашения</a> и
-            даю
-            <a href="#">согласие на обработку персональных данных.</a></label
+            >Я принимаю
+            <a routerLink="/agreement" fragment="conditions"
+              >условия пользовательского соглашения</a
+            >
+            и даю
+            <a routerLink="/agreement" fragment="assent"
+              >согласие на обработку персональных данных.</a
+            ></label
           >
         </div>
         <div *ngIf="agree?.invalid && (agree?.dirty || agree?.touched)">
